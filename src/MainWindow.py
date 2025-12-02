@@ -89,6 +89,7 @@ class MainWindow:
         self.ui_save_button = UI("ui_save_button")
 
     def define_variables(self):
+        # plus/minues buttons
         self.ui_auto_shutdown_hour_plus_button.connect("clicked", lambda w: self.on_ui_increase_hour_button(self.ui_auto_shutdown_hour_label))
         self.ui_auto_shutdown_hour_minus_button.connect("clicked", lambda w: self.on_ui_decrease_hour_button(self.ui_auto_shutdown_hour_label))
         self.ui_auto_shutdown_minute_plus_button.connect("clicked", lambda w: self.on_ui_increase_minute_button(self.ui_auto_shutdown_minute_label))
@@ -128,3 +129,24 @@ class MainWindow:
 
     def on_ui_save_button_clicked(self, button):
         self.ui_status_label.set_text("Hello Pardus!")
+
+    def on_ui_auto_shutdown_switch_toggled(self, switch, _):
+        is_active = switch.get_active()
+        self.ui_auto_shutdown_hour_plus_button.set_sensitive(is_active)
+        self.ui_auto_shutdown_hour_minus_button.set_sensitive(is_active)
+        self.ui_auto_shutdown_minute_plus_button.set_sensitive(is_active)
+        self.ui_auto_shutdown_minute_minus_button.set_sensitive(is_active)
+
+    def on_ui_timed_shutdown_switch_toggled(self, switch, _):
+        is_active = switch.get_active()
+        self.ui_timed_shutdown_hour_plus_button.set_sensitive(is_active)
+        self.ui_timed_shutdown_hour_minus_button.set_sensitive(is_active)
+        self.ui_timed_shutdown_minute_plus_button.set_sensitive(is_active)
+        self.ui_timed_shutdown_minute_minus_button.set_sensitive(is_active)
+
+    def on_ui_timed_suspend_switch_toggled(self, switch, _):
+        is_active = switch.get_active()
+        self.ui_timed_suspend_hour_plus_button.set_sensitive(is_active)
+        self.ui_timed_suspend_hour_minus_button.set_sensitive(is_active)
+        self.ui_timed_suspend_minute_plus_button.set_sensitive(is_active)
+        self.ui_timed_suspend_minute_minus_button.set_sensitive(is_active)
