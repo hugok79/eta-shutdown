@@ -48,31 +48,41 @@ class MainWindow:
         
         # switches
         self.ui_auto_shutdown_switch = UI("ui_auto_shutdown_switch")
-        self.ui_shutdown_board_switch = UI("ui_shutdown_board_switch")
+        self.ui_timed_shutdown_switch = UI("ui_timed_shutdown_switch")
+        self.ui_timed_suspend_switch = UI("ui_timed_suspend_switch")
         
         # time boxes
         self.ui_auto_shutdown_time_box = UI("ui_auto_shutdown_time_box")
-        self.ui_shutdown_board_time_box = UI("ui_shutdown_board_time_box")
+        self.ui_timed_shutdown_time_box = UI("ui_timed_shutdown_time_box")
+        self.ui_timed_suspend_time_box = UI("ui_timed_suspend_time_box")
         self.ui_auto_shutdown_hour_box = UI("ui_auto_shutdown_hour_box")
         self.ui_auto_shutdown_minute_box = UI("ui_auto_shutdown_minute_box")
-        self.ui_shutdown_board_hour_box = UI("ui_shutdown_board_hour_box")
-        self.ui_shutdown_board_minute_box = UI("ui_shutdown_board_minute_box")
-        
+        self.ui_timed_shutdown_hour_box = UI("ui_timed_shutdown_hour_box")
+        self.ui_timed_shutdown_minute_box = UI("ui_timed_shutdown_minute_box")
+        self.ui_timed_suspend_hour_box = UI("ui_timed_suspend_hour_box")
+        self.ui_timed_suspend_minute_box = UI("ui_timed_suspend_minute_box")
+
         # plus/minues buttons
         self.ui_auto_shutdown_hour_plus_button = UI("ui_auto_shutdown_hour_plus_button")
         self.ui_auto_shutdown_hour_minus_button = UI("ui_auto_shutdown_hour_minus_button")
         self.ui_auto_shutdown_minute_plus_button = UI("ui_auto_shutdown_minute_plus_button")
         self.ui_auto_shutdown_minute_minus_button = UI("ui_auto_shutdown_minute_minus_button")
-        self.ui_shutdown_board_hour_plus_button = UI("ui_shutdown_board_hour_plus_button")
-        self.ui_shutdown_board_hour_minus_button = UI("ui_shutdown_board_hour_minus_button")
-        self.ui_shutdown_board_minute_plus_button = UI("ui_shutdown_board_minute_plus_button")
-        self.ui_shutdown_board_minute_minus_button = UI("ui_shutdown_board_minute_minus_button")
+        self.ui_timed_shutdown_hour_plus_button = UI("ui_timed_shutdown_hour_plus_button")
+        self.ui_timed_shutdown_hour_minus_button = UI("ui_timed_shutdown_hour_minus_button")
+        self.ui_timed_shutdown_minute_plus_button = UI("ui_timed_shutdown_minute_plus_button")
+        self.ui_timed_shutdown_minute_minus_button = UI("ui_timed_shutdown_minute_minus_button")
+        self.ui_timed_suspend_hour_plus_button = UI("ui_timed_suspend_hour_plus_button")
+        self.ui_timed_suspend_hour_minus_button = UI("ui_timed_suspend_hour_minus_button")
+        self.ui_timed_suspend_minute_plus_button = UI("ui_timed_suspend_minute_plus_button")
+        self.ui_timed_suspend_minute_minus_button = UI("ui_timed_suspend_minute_minus_button")
 
         # labels
         self.ui_auto_shutdown_hour_label = UI("ui_auto_shutdown_hour_label")
         self.ui_auto_shutdown_minute_label = UI("ui_auto_shutdown_minute_label")
-        self.ui_shutdown_board_hour_label = UI("ui_shutdown_board_hour_label")
-        self.ui_shutdown_board_minute_label = UI("ui_shutdown_board_minute_label")
+        self.ui_timed_shutdown_hour_label = UI("ui_timed_shutdown_hour_label")
+        self.ui_timed_shutdown_minute_label = UI("ui_timed_shutdown_minute_label")
+        self.ui_timed_suspend_hour_label = UI("ui_timed_suspend_hour_label")
+        self.ui_timed_suspend_minute_label = UI("ui_timed_suspend_minute_label")
         self.ui_status_label = UI("ui_status_label")
 
         # buttons
