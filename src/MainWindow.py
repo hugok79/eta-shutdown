@@ -89,8 +89,42 @@ class MainWindow:
         self.ui_save_button = UI("ui_save_button")
 
     def define_variables(self):
-        #self.ui_status_label.set_text("Hello Pardus!")
-        pass
+        self.ui_auto_shutdown_hour_plus_button.connect("clicked", lambda w: self.on_ui_increase_hour_button(self.ui_auto_shutdown_hour_label))
+        self.ui_auto_shutdown_hour_minus_button.connect("clicked", lambda w: self.on_ui_decrease_hour_button(self.ui_auto_shutdown_hour_label))
+        self.ui_auto_shutdown_minute_plus_button.connect("clicked", lambda w: self.on_ui_increase_minute_button(self.ui_auto_shutdown_minute_label))
+        self.ui_auto_shutdown_minute_minus_button.connect("clicked", lambda w: self.on_ui_decrease_minute_button(self.ui_auto_shutdown_minute_label))
+        self.ui_timed_shutdown_hour_plus_button.connect("clicked", lambda w: self.on_ui_increase_hour_button(self.ui_timed_shutdown_hour_label))
+        self.ui_timed_shutdown_hour_minus_button.connect("clicked", lambda w: self.on_ui_decrease_hour_button(self.ui_timed_shutdown_hour_label))
+        self.ui_timed_shutdown_minute_plus_button.connect("clicked", lambda w: self.on_ui_increase_minute_button(self.ui_timed_shutdown_minute_label))
+        self.ui_timed_shutdown_minute_minus_button.connect("clicked", lambda w: self.on_ui_decrease_minute_button(self.ui_timed_shutdown_minute_label))
+        self.ui_timed_suspend_hour_plus_button.connect("clicked", lambda w: self.on_ui_increase_hour_button(self.ui_timed_suspend_hour_label))
+        self.ui_timed_suspend_hour_minus_button.connect("clicked", lambda w: self.on_ui_decrease_hour_button(self.ui_timed_suspend_hour_label))
+        self.ui_timed_suspend_minute_plus_button.connect("clicked", lambda w: self.on_ui_increase_minute_button(self.ui_timed_suspend_minute_label))
+        self.ui_timed_suspend_minute_minus_button.connect("clicked", lambda w: self.on_ui_decrease_minute_button(self.ui_timed_suspend_minute_label))
+
+    def on_ui_increase_hour_button(self, label):
+        hour = label.get_text()
+        hour = int(hour)
+        hour = (hour + 1) % 24
+        label.set_text(str(hour).zfill(2))
+
+    def on_ui_decrease_hour_button(self, label):
+        hour = label.get_text()
+        hour = int(hour)
+        hour = (hour - 1) % 24
+        label.set_text(str(hour).zfill(2))
+
+    def on_ui_increase_minute_button(self, label):
+        minute = label.get_text()
+        minute = int(minute)
+        minute = (minute + 1) % 60
+        label.set_text(str(minute).zfill(2))
+
+    def on_ui_decrease_minute_button(self, label):
+        minute = label.get_text()
+        minute = int(minute)
+        minute = (minute - 1) % 60
+        label.set_text(str(minute).zfill(2))
 
     def on_ui_save_button_clicked(self, button):
         self.ui_status_label.set_text("Hello Pardus!")
