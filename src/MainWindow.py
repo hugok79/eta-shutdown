@@ -128,7 +128,9 @@ class MainWindow:
         label.set_text(str(minute).zfill(2))
 
     def on_ui_save_button_clicked(self, button):
-        self.ui_status_label.set_text("Hello Pardus!")
+        #self.ui_status_label.set_text("Hello Pardus!")
+        self.on_ui_set_status()
+
 
     def on_ui_auto_shutdown_switch_toggled(self, switch, _):
         is_active = switch.get_active()
@@ -150,3 +152,13 @@ class MainWindow:
         self.ui_timed_suspend_hour_minus_button.set_sensitive(is_active)
         self.ui_timed_suspend_minute_plus_button.set_sensitive(is_active)
         self.ui_timed_suspend_minute_minus_button.set_sensitive(is_active)
+
+    def on_ui_set_status(self):
+        if self.ui_auto_shutdown_switch.get_active():
+            self.ui_status_label.set_text("Auto shutdown mode active")
+        elif self.ui_timed_shutdown_switch.get_active():
+            self.ui_status_label.set_text("Timed shutdown mode active")
+        elif self.ui_timed_suspend_switch.get_active():
+            self.ui_status_label.set_text("Timed suspend mode active")
+        else:
+            self.ui_status_label.set_text("No settings")
