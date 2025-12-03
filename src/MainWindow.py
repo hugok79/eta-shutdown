@@ -1,3 +1,4 @@
+import configparser
 import os
 import gi
 gi.require_version('Gtk', '3.0')
@@ -14,7 +15,7 @@ TRANSLATIONS_PATH = "/usr/share/locale"
 locale.bindtextdomain(APPNAME, TRANSLATIONS_PATH)
 locale.textdomain(APPNAME)
 
-
+CONFIG_FILE = "/etc/pardus/eta-shutdown.conf"
 
 class MainWindow:
     def __init__(self, application):
@@ -103,6 +104,8 @@ class MainWindow:
         self.ui_timed_suspend_minute_plus_button.connect("clicked", lambda w: self.on_ui_increase_minute_button(self.ui_timed_suspend_minute_label))
         self.ui_timed_suspend_minute_minus_button.connect("clicked", lambda w: self.on_ui_decrease_minute_button(self.ui_timed_suspend_minute_label))
 
+        self.on_ui_show_settings()
+
     def on_ui_increase_hour_button(self, label):
         hour = label.get_text()
         hour = int(hour)
@@ -130,6 +133,7 @@ class MainWindow:
     def on_ui_save_button_clicked(self, button):
         #self.ui_status_label.set_text("Hello Pardus!")
         self.on_ui_set_status()
+        self.save_eta_shutdown_config()
 
 
     def on_ui_auto_shutdown_switch_toggled(self, switch, _):
@@ -159,6 +163,82 @@ class MainWindow:
         elif self.ui_timed_shutdown_switch.get_active():
             self.ui_status_label.set_text("Timed shutdown mode active")
         elif self.ui_timed_suspend_switch.get_active():
+            self.ui_status_label.set_text("Timed suspend mode active")
+        else:
+            self.ui_status_label.set_text("No settings")
+
+    def load_or_create_eta_shutdown_config(self):
+        config = configparser.ConfigParser()
+
+        if not os.path.exists(CONFIG_FILE):
+            config["AUTO_SHUTDOWN"] = {
+                "enabled": "False",
+                "hour": "0",
+                "minute": "0"
+            }
+
+            config["TIMED_SUSPEND"] = {
+                "enabled": "False",
+                "hour": "0",
+                "minute": "0"
+            }
+
+            config["TIMED_SHUTDOWN"] = {
+                "enabled": "False",
+                "hour": "0",
+                "minute": "0"
+            }
+
+            with open(CONFIG_FILE, "w") as file:
+                config.write(file)
+
+        config.read(CONFIG_FILE)
+        return config
+
+    def save_eta_shutdown_config(self):
+        config = configparser.ConfigParser()
+
+        config["AUTO_SHUTDOWN"] = {
+            "enabled": str(self.ui_auto_shutdown_switch.get_active()),
+            "hour": str(self.ui_auto_shutdown_hour_label.get_text()),
+            "minute": str(self.ui_auto_shutdown_minute_label.get_text())
+        }
+
+        config["TIMED_SUSPEND"] = {
+            "enabled": str(self.ui_timed_suspend_switch.get_active()),
+            "hour": str(self.ui_timed_suspend_hour_label.get_text()),
+            "minute": str(self.ui_timed_suspend_minute_label.get_text())
+        }
+
+        config["TIMED_SHUTDOWN"] = {
+            "enabled": str(self.ui_timed_shutdown_switch.get_active()),
+            "hour": str(self.ui_timed_shutdown_hour_label.get_text()),
+            "minute": str(self.ui_timed_shutdown_minute_label.get_text())
+        }
+
+        with open(CONFIG_FILE, "w") as file:
+            config.write(file)
+
+    def on_ui_show_settings(self):
+        config = self.load_or_create_eta_shutdown_config()
+
+        self.ui_auto_shutdown_switch.set_active(config.getboolean("AUTO_SHUTDOWN", "enabled"))
+        self.ui_auto_shutdown_hour_label.set_text(config.get("AUTO_SHUTDOWN", "hour"))
+        self.ui_auto_shutdown_minute_label.set_text(config.get("AUTO_SHUTDOWN", "minute"))
+
+        self.ui_timed_suspend_switch.set_active(config.getboolean("TIMED_SUSPEND", "enabled"))
+        self.ui_timed_suspend_hour_label.set_text(config.get("TIMED_SUSPEND", "hour"))
+        self.ui_timed_suspend_minute_label.set_text(config.get("TIMED_SUSPEND", "minute"))
+
+        self.ui_timed_shutdown_switch.set_active(config.getboolean("TIMED_SHUTDOWN", "enabled"))
+        self.ui_timed_shutdown_hour_label.set_text(config.get("TIMED_SHUTDOWN", "hour"))
+        self.ui_timed_shutdown_minute_label.set_text(config.get("TIMED_SHUTDOWN", "minute"))
+
+        if config.getboolean("AUTO_SHUTDOWN", "enabled"):
+            self.ui_status_label.set_text("Auto shutdown mode active")
+        elif config.getboolean("TIMED_SUSPEND", "enabled"):
+            self.ui_status_label.set_text("Timed shutdown mode active")
+        elif config.getboolean("TIMED_SHUTDOWN", "enabled"):
             self.ui_status_label.set_text("Timed suspend mode active")
         else:
             self.ui_status_label.set_text("No settings")
