@@ -136,26 +136,38 @@ class MainWindow:
         self.save_eta_shutdown_config()
 
 
-    def on_ui_auto_shutdown_switch_toggled(self, switch, _):
+    def on_ui_auto_shutdown_switch_toggled(self, switch, state):
         is_active = switch.get_active()
         self.ui_auto_shutdown_hour_plus_button.set_sensitive(is_active)
         self.ui_auto_shutdown_hour_minus_button.set_sensitive(is_active)
         self.ui_auto_shutdown_minute_plus_button.set_sensitive(is_active)
         self.ui_auto_shutdown_minute_minus_button.set_sensitive(is_active)
 
-    def on_ui_timed_shutdown_switch_toggled(self, switch, _):
+        if state:
+            self.ui_timed_suspend_switch.set_active(False)
+            self.ui_timed_shutdown_switch.set_active(False)
+
+    def on_ui_timed_shutdown_switch_toggled(self, switch, state):
         is_active = switch.get_active()
         self.ui_timed_shutdown_hour_plus_button.set_sensitive(is_active)
         self.ui_timed_shutdown_hour_minus_button.set_sensitive(is_active)
         self.ui_timed_shutdown_minute_plus_button.set_sensitive(is_active)
         self.ui_timed_shutdown_minute_minus_button.set_sensitive(is_active)
 
-    def on_ui_timed_suspend_switch_toggled(self, switch, _):
+        if state:
+            self.ui_timed_suspend_switch.set_active(False)
+            self.ui_auto_shutdown_switch.set_active(False)
+
+    def on_ui_timed_suspend_switch_toggled(self, switch, state):
         is_active = switch.get_active()
         self.ui_timed_suspend_hour_plus_button.set_sensitive(is_active)
         self.ui_timed_suspend_hour_minus_button.set_sensitive(is_active)
         self.ui_timed_suspend_minute_plus_button.set_sensitive(is_active)
         self.ui_timed_suspend_minute_minus_button.set_sensitive(is_active)
+
+        if state:
+            self.ui_auto_shutdown_switch.set_active(False)
+            self.ui_timed_shutdown_switch.set_active(False)
 
     def on_ui_set_status(self):
         if self.ui_auto_shutdown_switch.get_active():
