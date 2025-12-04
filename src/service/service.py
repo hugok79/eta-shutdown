@@ -10,24 +10,26 @@ from datetime import datetime
 from xidle import get_idle_time
 from logger import log
 
-# define variables
-shutdown_diff = 60*60*1000
+"""
+[AUTO_SHUTDOWN]
+enabled = False
+hour = 01
+minute = 00
 
-config_test = """
-[poweroff]
-command=poweroff -f
-timeout=3600000
-hour=19
-minute=0
+[TIMED_SUSPEND]
+enabled = False
+hour = 00
+minute = 00
 
-[suspend]
-command=systemctl suspend
-timeout=3600000
-hour=19
-minute=0
+[TIMED_SHUTDOWN]
+enabled = False
+hour = 00
+minute = 00
 """
 
-config = configparser.ConfigParser(config_test)
+config = []
+with open("/etc/pardus/eta-shutdown.conf", "r") as f:
+    config = configparser.ConfigParser(f.read())
 
 def check_time(hour, minute):
     now = datetime.now()
@@ -36,14 +38,33 @@ def check_time(hour, minute):
 
 def service():
     log("###### Eta Shutdown {} ######".format(time.time()))
+    idle_time = -1
     for display in os.listdir("/tmp/.X11-unix/"):
-        idle_time = get_idle_time(f":{display[1:]}")
-        for sec in config.sections():
-            if idle_time > int(config[sec]["timeout"]):
-                os.system(config[sec]["command"])
-            if check_time(int(config[sec]["hour"]), int(config[sec]["minute"])):
-                os.system(config[sec]["command"])
-
-        if idle_time > shutdown_diff:
-        # check current time
-            poweroff()
+        idle = get_idle_time(f":{display[1:]}")
+        if idle_time < idle or idle_time < 0:
+            idle_time = idle
+    log("idle_time: {}".format(idle_time))
+    # auto shutdown
+    if "AUTO_SHUTDOWN" in config and "enabled" in config["AUTO_SHUTDOWN"]:
+        if config["AUTO_SHUTDOWN"]["enabled"].lower() == "true":
+            if "hour" in config["AUTO_SHUTDOWN"] and "minute" in config["AUTO_SHUTDOWN"]:
+                hour = int(config["AUTO_SHUTDOWN"]["hour"])
+                minute = int(config["AUTO_SHUTDOWN"]["minute"])
+                if idle_time > (hour*3600 + minute * 60)*1000:
+                    os.system("poweroff -f")
+    # timed shutdown
+    if "TIMED_SHUTDOWN" in config and "enabled" in config["TIMED_SHUTDOWN"]:
+        if config["TIMED_SHUTDOWN"]["enabled"].lower() == "true":
+            if "hour" in config["TIMED_SHUTDOWN"] and "minute" in config["TIMED_SHUTDOWN"]:
+                hour = int(config["TIMED_SHUTDOWN"]["hour"])
+                minute = int(config["TIMED_SHUTDOWN"]["minute"])
+                if check_time(hour, minute):
+                    os.system("poweroff -f")
+    # timed suspend
+    elif "TIMED_SUSPEND" in config and "enabled" in config["TIMED_SUSPEND"]:
+        if config["TIMED_SUSPEND"]["enabled"].lower() == "true":
+            if "hour" in config["TIMED_SUSPEND"] and "minute" in config["TIMED_SUSPEND"]:
+                hour = int(config["TIMED_SUSPEND"]["hour"])
+                minute = int(config["TIMED_SUSPEND"]["minute"])
+                if check_time(hour, minute):
+                    os.system("systemctl suspend")
