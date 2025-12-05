@@ -27,9 +27,9 @@ hour = 00
 minute = 00
 """
 
-config = []
-with open("/etc/pardus/eta-shutdown.conf", "r") as f:
-    config = configparser.ConfigParser(f.read())
+CONFIG_FILE = "/etc/pardus/eta-shutdown.conf"
+config = configparser.ConfigParser()
+config.read(CONFIG_FILE)
 
 def check_time(hour, minute):
     now = datetime.now()

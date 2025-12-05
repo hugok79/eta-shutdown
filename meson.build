@@ -1,6 +1,6 @@
 project('eta-shutdown')
 
-subdir('po')
+#subdir('po')
 # install sources
 install_subdir('src', install_dir : '/usr/share/eta/eta-shutdown')
 install_subdir('ui', install_dir : '/usr/share/eta/eta-shutdown')

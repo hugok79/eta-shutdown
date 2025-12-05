@@ -1,0 +1,58 @@
+#: ui/MainWindow.glade:75
+msgid "Auto Shutdown Mode"
+msgstr ""
+
+#: ui/MainWindow.glade:115
+msgid "Select Time: "
+msgstr ""
+
+#: ui/MainWindow.glade:130 ui/MainWindow.glade:195 ui/MainWindow.glade:371
+#: ui/MainWindow.glade:436
+msgid "+"
+msgstr ""
+
+#: ui/MainWindow.glade:143 ui/MainWindow.glade:220 ui/MainWindow.glade:396
+#: ui/MainWindow.glade:461
+msgid "-"
+msgstr ""
+
+#: ui/MainWindow.glade:159 ui/MainWindow.glade:210 ui/MainWindow.glade:386
+#: ui/MainWindow.glade:451
+msgid "00"
+msgstr ""
+
+#: ui/MainWindow.glade:179 ui/MainWindow.glade:420
+msgid ":"
+msgstr ""
+
+#: ui/MainWindow.glade:270
+msgid "Timed Mode"
+msgstr ""
+
+#: ui/MainWindow.glade:308
+msgid "Timed Suspend"
+msgstr ""
+
+#: ui/MainWindow.glade:325
+msgid "Timed Shutdown"
+msgstr ""
+
+#: ui/MainWindow.glade:356
+msgid "If untouched for"
+msgstr ""
+
+#: ui/MainWindow.glade:522
+msgid "Status: "
+msgstr ""
+
+#: ui/MainWindow.glade:537
+msgid "No settings"
+msgstr ""
+
+#: ui/MainWindow.glade:555
+msgid "Save"
+msgstr ""
+
+#: ui/MainWindow.glade:581
+msgid "ETA Shutdown"
+msgstr ""
