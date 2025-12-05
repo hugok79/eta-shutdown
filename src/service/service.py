@@ -44,14 +44,16 @@ def service():
         idle = get_idle_time(f":{display[1:]}")
         if idle_time < idle or idle_time < 0:
             idle_time = idle
-    log("idle_time: {}".format(idle_time))
+    print("idle_time: {}".format(idle_time))
     # timed shutdown
     if "TIMED_SHUTDOWN" in config and "enabled" in config["TIMED_SHUTDOWN"]:
         if config["TIMED_SHUTDOWN"]["enabled"].lower() == "true":
             if "hour" in config["TIMED_SHUTDOWN"] and "minute" in config["TIMED_SHUTDOWN"]:
                 hour = int(config["TIMED_SHUTDOWN"]["hour"])
                 minute = int(config["TIMED_SHUTDOWN"]["minute"])
-                if idle_time > (hour*3600 + minute * 60)*1000:
+                req_idle = (hour*3600 + minute * 60)*1000
+                print("req_idle:", req_idle)
+                if idle_time > req_idle:
                     print("timed shutdown")
                     os.system("poweroff -f")
     # timed shutdown
@@ -60,7 +62,9 @@ def service():
             if "hour" in config["TIMED_SUSPEND"] and "minute" in config["TIMED_SUSPEND"]:
                 hour = int(config["TIMED_SUSPEND"]["hour"])
                 minute = int(config["TIMED_SUSPEND"]["minute"])
-                if idle_time > (hour*3600 + minute * 60)*1000:
+                req_idle = (hour*3600 + minute * 60)*1000
+                print("req_idle:", req_idle)
+                if idle_time > req_idle:
                     print("timed suspend")
                     os.system("systemctl suspend")
     # auto shutdown
