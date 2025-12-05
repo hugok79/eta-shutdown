@@ -8,7 +8,7 @@ import locale
 from locale import gettext as _
 
 # Translation Constants:
-APPNAME = "eta-session-operations"
+APPNAME = "eta-shutdown"
 TRANSLATIONS_PATH = "/usr/share/locale"
 
 # Translation functions:
