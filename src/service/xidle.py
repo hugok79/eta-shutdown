@@ -28,5 +28,9 @@ def get_idle_time(display=None):
 
 if __name__ == "__main__":
     import os
-    print(get_idle_time(os.environ["DISPLAY"]))
-
+    idle_time = -1
+    for display in os.listdir("/tmp/.X11-unix/"):
+        idle = get_idle_time(f":{display[1:]}")
+        if idle_time < idle or idle_time < 0:
+            idle_time = idle
+    print("idle_time: {}".format(idle_time))
