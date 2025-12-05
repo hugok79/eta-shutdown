@@ -1,7 +1,7 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: eta-session-operations
+Upstream-Name: eta-shutdown
 Upstream-Contact: Büşra ÇAĞLIYAN <busra.cagliyan@pardus.org.tr>
-Source: https://github.com/pardus/eta-session-operations
+Source: https://github.com/pardus/eta-shutdown
 
 Files: *
 Copyright: 2025, Pardus <dev@pardus.org.tr>
