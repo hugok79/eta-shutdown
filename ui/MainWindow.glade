@@ -127,7 +127,7 @@
                     <property name="spacing">7</property>
                     <child>
                       <object class="GtkButton" id="ui_auto_shutdown_minute_plus_button">
-                        <property name="label" translatable="yes">+</property>
+                        <property name="label">+</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
@@ -140,7 +140,7 @@
                     </child>
                     <child>
                       <object class="GtkButton" id="ui_auto_shutdown_minute_minus_button">
-                        <property name="label" translatable="yes">-</property>
+                        <property name="label">-</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
@@ -156,7 +156,7 @@
                       <object class="GtkLabel" id="ui_auto_shutdown_minute_label">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">00</property>
+                        <property name="label">00</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -176,7 +176,7 @@
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="label" translatable="yes">:</property>
+                    <property name="label">:</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -192,7 +192,7 @@
                     <property name="spacing">7</property>
                     <child>
                       <object class="GtkButton" id="ui_auto_shutdown_hour_plus_button">
-                        <property name="label" translatable="yes">+</property>
+                        <property name="label">+</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
@@ -207,7 +207,7 @@
                       <object class="GtkLabel" id="ui_auto_shutdown_hour_label">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">00</property>
+                        <property name="label">00</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -217,7 +217,7 @@
                     </child>
                     <child>
                       <object class="GtkButton" id="ui_auto_shutdown_hour_minus_button">
-                        <property name="label" translatable="yes">-</property>
+                        <property name="label">-</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
@@ -368,7 +368,7 @@
                     <property name="spacing">7</property>
                     <child>
                       <object class="GtkButton" id="ui_timed_minute_plus_button">
-                        <property name="label" translatable="yes">+</property>
+                        <property name="label">+</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
@@ -383,7 +383,7 @@
                       <object class="GtkLabel" id="ui_timed_minute_label">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">00</property>
+                        <property name="label">00</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -393,7 +393,7 @@
                     </child>
                     <child>
                       <object class="GtkButton" id="ui_timed_minute_minus_button">
-                        <property name="label" translatable="yes">-</property>
+                        <property name="label">-</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
@@ -417,7 +417,7 @@
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="label" translatable="yes">:</property>
+                    <property name="label">:</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -433,7 +433,7 @@
                     <property name="spacing">7</property>
                     <child>
                       <object class="GtkButton" id="ui_timed_hour_plus_button">
-                        <property name="label" translatable="yes">+</property>
+                        <property name="label">+</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
@@ -448,7 +448,7 @@
                       <object class="GtkLabel" id="ui_timed_hour_label">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">00</property>
+                        <property name="label">00</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -458,7 +458,7 @@
                     </child>
                     <child>
                       <object class="GtkButton" id="ui_timed_hour_minus_button">
-                        <property name="label" translatable="yes">-</property>
+                        <property name="label">-</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>

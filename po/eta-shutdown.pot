@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-05 09:42+0300\n"
+"POT-Creation-Date: 2025-12-05 13:58+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,25 +23,6 @@ msgstr ""
 
 #: ui/MainWindow.glade:115
 msgid "Select Time: "
-msgstr ""
-
-#: ui/MainWindow.glade:130 ui/MainWindow.glade:195 ui/MainWindow.glade:371
-#: ui/MainWindow.glade:436
-msgid "+"
-msgstr ""
-
-#: ui/MainWindow.glade:143 ui/MainWindow.glade:220 ui/MainWindow.glade:396
-#: ui/MainWindow.glade:461
-msgid "-"
-msgstr ""
-
-#: ui/MainWindow.glade:159 ui/MainWindow.glade:210 ui/MainWindow.glade:386
-#: ui/MainWindow.glade:451
-msgid "00"
-msgstr ""
-
-#: ui/MainWindow.glade:179 ui/MainWindow.glade:420
-msgid ":"
 msgstr ""
 
 #: ui/MainWindow.glade:270
@@ -64,7 +45,7 @@ msgstr ""
 msgid "Status: "
 msgstr ""
 
-#: ui/MainWindow.glade:537
+#: ui/MainWindow.glade:537 src/MainWindow.py:105
 msgid "No settings"
 msgstr ""
 
@@ -74,4 +55,20 @@ msgstr ""
 
 #: ui/MainWindow.glade:581
 msgid "ETA Shutdown"
+msgstr ""
+
+#: src/MainWindow.py:101
+msgid "This mode may not work on some boards."
+msgstr ""
+
+#: src/MainWindow.py:102
+msgid "Auto shutdown mode active"
+msgstr ""
+
+#: src/MainWindow.py:103
+msgid "Timed suspend mode active"
+msgstr ""
+
+#: src/MainWindow.py:104
+msgid "Timed shutdown mode active"
 msgstr ""

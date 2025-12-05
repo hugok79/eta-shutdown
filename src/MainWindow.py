@@ -96,6 +96,14 @@ class MainWindow:
         self.ui_timed_minute_minus_button.connect("clicked", lambda w: self.on_ui_decrease_minute_button(self.ui_timed_minute_label))
 
         self.ui_warning_label.set_text("")
+
+        # text
+        self.warning_message = _("This mode may not work on some boards.")
+        self.auto_mode_message = _("Auto shutdown mode active")
+        self.timed_suspend_mode_message = _("Timed suspend mode active")
+        self.timed_shutdown_mode_message = _("Timed shutdown mode active")
+        self.no_setting_message = _("No settings")
+
         self.on_ui_show_warning_message()
         self.on_ui_show_settings()
 
@@ -144,30 +152,30 @@ class MainWindow:
         self.ui_timed_suspend_rbutton.set_sensitive(is_active)
         self.ui_timed_shutdown_rbutton.set_sensitive(is_active)
         if self.ui_timed_switch.get_active() and self.ui_timed_suspend_rbutton.get_active():
-            self.ui_warning_label.set_text("This mode may not work on some boards.")
+            self.ui_warning_label.set_text(self.warning_message)
         else:
             self.ui_warning_label.set_text("")
 
     def on_ui_show_warning_message(self):
         if self.ui_timed_switch.get_active():
             if self.ui_timed_suspend_rbutton.get_active():
-                self.ui_warning_label.set_text("This mode may not work on some boards.")
+                self.ui_warning_label.set_text(self.warning_message)
             else:
                 self.ui_warning_label.set_text("")
         self.ui_warning_label.set_text("")
 
     def on_ui_set_status(self):
         if self.ui_auto_shutdown_switch.get_active():
-            self.ui_status_label.set_text("Auto shutdown mode active")
+            self.ui_status_label.set_text(self.auto_mode_message)
         elif self.ui_timed_switch.get_active():
             if self.ui_timed_suspend_rbutton.get_active():
-                self.ui_status_label.set_text("Timed suspend mode active")
-                self.ui_warning_label.set_text("This mode may not work on some boards.")
+                self.ui_status_label.set_text(self.timed_suspend_mode_message)
+                self.ui_warning_label.set_text(self.warning_message)
             else:
-                self.ui_status_label.set_text("Timed shutdown mode active")
+                self.ui_status_label.set_text(self.timed_shutdown_mode_message)
                 self.ui_warning_label.set_text("")
         else:
-            self.ui_status_label.set_text("No settings")
+            self.ui_status_label.set_text(self.no_setting_message)
 
     def load_or_create_eta_shutdown_config(self):
         config = configparser.ConfigParser()
@@ -242,16 +250,16 @@ class MainWindow:
             self.ui_timed_switch.set_active(True)
 
         if config.getboolean("AUTO_SHUTDOWN", "enabled"):
-            self.ui_status_label.set_text("Auto shutdown mode active")
+            self.ui_status_label.set_text(self.auto_mode_message)
         elif config.getboolean("TIMED_SUSPEND", "enabled"):
-            self.ui_status_label.set_text("Timed shutdown mode active")
+            self.ui_status_label.set_text(self.timed_shutdown_mode_message)
         elif config.getboolean("TIMED_SHUTDOWN", "enabled"):
-            self.ui_status_label.set_text("Timed suspend mode active")
+            self.ui_status_label.set_text(self.timed_suspend_mode_message)
         else:
-            self.ui_status_label.set_text("No settings")
+            self.ui_status_label.set_text(self.no_setting_message)
 
     def on_radio_button_toggled(self, button):
         if button.get_active():
-            self.ui_warning_label.set_text("This mode may not work on some boards.")
+            self.ui_warning_label.set_text(self.warning_message)
         else:
             self.ui_warning_label.set_text("")
