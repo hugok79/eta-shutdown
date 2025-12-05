@@ -37,6 +37,11 @@ def check_time(hour, minute):
     print(now, nex)
     return nex.timestamp() - now.timestamp() < 0
 
+mode = {
+    "TIMED_SHUTDOWN": "poweroff -f",
+    "TIMED_SUSPEND": "systemctl suspend"
+}
+
 def service():
     log("###### Eta Shutdown {} ######".format(time.time()))
     idle_time = -1
@@ -46,27 +51,17 @@ def service():
             idle_time = idle
     print("idle_time: {}".format(idle_time))
     # timed shutdown
-    if "TIMED_SHUTDOWN" in config and "enabled" in config["TIMED_SHUTDOWN"]:
-        if config["TIMED_SHUTDOWN"]["enabled"].lower() == "true":
-            if "hour" in config["TIMED_SHUTDOWN"] and "minute" in config["TIMED_SHUTDOWN"]:
-                hour = int(config["TIMED_SHUTDOWN"]["hour"])
-                minute = int(config["TIMED_SHUTDOWN"]["minute"])
-                req_idle = (hour*3600 + minute * 60)*1000
-                print("req_idle:", req_idle)
-                if idle_time > req_idle:
-                    print("timed shutdown")
-                    os.system("poweroff -f")
-    # timed shutdown
-    if "TIMED_SUSPEND" in config and "enabled" in config["TIMED_SUSPEND"]:
-        if config["TIMED_SUSPEND"]["enabled"].lower() == "true":
-            if "hour" in config["TIMED_SUSPEND"] and "minute" in config["TIMED_SUSPEND"]:
-                hour = int(config["TIMED_SUSPEND"]["hour"])
-                minute = int(config["TIMED_SUSPEND"]["minute"])
-                req_idle = (hour*3600 + minute * 60)*1000
-                print("req_idle:", req_idle)
-                if idle_time > req_idle:
-                    print("timed suspend")
-                    os.system("systemctl suspend")
+    for sec in mode.keys():
+        if sec in config and "enabled" in config[sec]:
+            if config[sec]["enabled"].lower() == "true":
+                if "hour" in config[sec] and "minute" in config[sec]:
+                    hour = int(config[sec]["hour"])
+                    minute = int(config[sec]["minute"])
+                    req_idle = (hour*3600 + minute * 60)*1000
+                    print("req_idle:", req_idle)
+                    if idle_time > req_idle:
+                        print("timed ",sec)
+                        os.system(mode[sec])
     # auto shutdown
     if "AUTO_SHUTDOWN" in config and "enabled" in config["AUTO_SHUTDOWN"]:
         if config["AUTO_SHUTDOWN"]["enabled"].lower() == "true":
