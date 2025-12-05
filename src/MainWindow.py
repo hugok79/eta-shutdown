@@ -143,6 +143,10 @@ class MainWindow:
         self.ui_timed_minute_minus_button.set_sensitive(is_active)
         self.ui_timed_suspend_rbutton.set_sensitive(is_active)
         self.ui_timed_shutdown_rbutton.set_sensitive(is_active)
+        if self.ui_timed_switch.get_active() and self.ui_timed_suspend_rbutton.get_active():
+            self.ui_warning_label.set_text("This mode may not work on some boards.")
+        else:
+            self.ui_warning_label.set_text("")
 
     def on_ui_show_warning_message(self):
         if self.ui_timed_switch.get_active():
