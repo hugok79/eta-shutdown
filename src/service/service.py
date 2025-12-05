@@ -53,7 +53,7 @@ def service():
                 minute = int(config["TIMED_SHUTDOWN"]["minute"])
                 if idle_time > (hour*3600 + minute * 60)*1000:
                     print("timed shutdown")
-                    os.system("echo poweroff -f")
+                    os.system("poweroff -f")
     # timed shutdown
     if "TIMED_SUSPEND" in config and "enabled" in config["TIMED_SUSPEND"]:
         if config["TIMED_SUSPEND"]["enabled"].lower() == "true":
@@ -62,7 +62,7 @@ def service():
                 minute = int(config["TIMED_SUSPEND"]["minute"])
                 if idle_time > (hour*3600 + minute * 60)*1000:
                     print("timed suspend")
-                    os.system("echo systemctl suspend")
+                    os.system("systemctl suspend")
     # auto shutdown
     if "AUTO_SHUTDOWN" in config and "enabled" in config["AUTO_SHUTDOWN"]:
         if config["AUTO_SHUTDOWN"]["enabled"].lower() == "true":
@@ -71,4 +71,4 @@ def service():
                 minute = int(config["AUTO_SHUTDOWN"]["minute"])
                 if check_time(hour, minute):
                     print("auto shutdown")
-                    os.system("echo poweroff -f")
+                    os.system("poweroff -f")
