@@ -15,12 +15,12 @@ def get_idle_time(display=None):
     if xss is None or xlib is None:
         return 0
     display = xlib.XOpenDisplay(bytes(display, 'ascii'))
-    if display is None:
+    if display <= 0:
         return 0
     xss.XScreenSaverAllocInfo.restype = ctypes.POINTER(XScreenSaverInfo)
     xssinfo = xss.XScreenSaverAllocInfo()
     window = xlib.XDefaultRootWindow(display)
-    if xssinfo is None or window is None:
+    if xssinfo is None or window <= 0:
         return 0
     xss.XScreenSaverQueryInfo(display, window, xssinfo)
 
