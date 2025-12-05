@@ -49,42 +49,37 @@ class MainWindow:
         
         # switches
         self.ui_auto_shutdown_switch = UI("ui_auto_shutdown_switch")
-        self.ui_timed_shutdown_switch = UI("ui_timed_shutdown_switch")
-        self.ui_timed_suspend_switch = UI("ui_timed_suspend_switch")
+        self.ui_timed_switch = UI("ui_timed_switch")
+
+        # radio buttons
+        self.ui_timed_suspend_rbutton = UI("ui_timed_suspend_rbutton")
+        self.ui_timed_shutdown_rbutton = UI("ui_timed_shutdown_rbutton")
         
         # time boxes
         self.ui_auto_shutdown_time_box = UI("ui_auto_shutdown_time_box")
-        self.ui_timed_shutdown_time_box = UI("ui_timed_shutdown_time_box")
-        self.ui_timed_suspend_time_box = UI("ui_timed_suspend_time_box")
+        self.ui_timed_time_box = UI("ui_timed_shutdown_time_box")
         self.ui_auto_shutdown_hour_box = UI("ui_auto_shutdown_hour_box")
         self.ui_auto_shutdown_minute_box = UI("ui_auto_shutdown_minute_box")
-        self.ui_timed_shutdown_hour_box = UI("ui_timed_shutdown_hour_box")
-        self.ui_timed_shutdown_minute_box = UI("ui_timed_shutdown_minute_box")
-        self.ui_timed_suspend_hour_box = UI("ui_timed_suspend_hour_box")
-        self.ui_timed_suspend_minute_box = UI("ui_timed_suspend_minute_box")
+        self.ui_timed_hour_box = UI("ui_timed_hour_box")
+        self.ui_timed_minute_box = UI("ui_timed_minute_box")
 
         # plus/minues buttons
         self.ui_auto_shutdown_hour_plus_button = UI("ui_auto_shutdown_hour_plus_button")
         self.ui_auto_shutdown_hour_minus_button = UI("ui_auto_shutdown_hour_minus_button")
         self.ui_auto_shutdown_minute_plus_button = UI("ui_auto_shutdown_minute_plus_button")
         self.ui_auto_shutdown_minute_minus_button = UI("ui_auto_shutdown_minute_minus_button")
-        self.ui_timed_shutdown_hour_plus_button = UI("ui_timed_shutdown_hour_plus_button")
-        self.ui_timed_shutdown_hour_minus_button = UI("ui_timed_shutdown_hour_minus_button")
-        self.ui_timed_shutdown_minute_plus_button = UI("ui_timed_shutdown_minute_plus_button")
-        self.ui_timed_shutdown_minute_minus_button = UI("ui_timed_shutdown_minute_minus_button")
-        self.ui_timed_suspend_hour_plus_button = UI("ui_timed_suspend_hour_plus_button")
-        self.ui_timed_suspend_hour_minus_button = UI("ui_timed_suspend_hour_minus_button")
-        self.ui_timed_suspend_minute_plus_button = UI("ui_timed_suspend_minute_plus_button")
-        self.ui_timed_suspend_minute_minus_button = UI("ui_timed_suspend_minute_minus_button")
+        self.ui_timed_hour_plus_button = UI("ui_timed_hour_plus_button")
+        self.ui_timed_hour_minus_button = UI("ui_timed_hour_minus_button")
+        self.ui_timed_minute_plus_button = UI("ui_timed_minute_plus_button")
+        self.ui_timed_minute_minus_button = UI("ui_timed_minute_minus_button")
 
         # labels
         self.ui_auto_shutdown_hour_label = UI("ui_auto_shutdown_hour_label")
         self.ui_auto_shutdown_minute_label = UI("ui_auto_shutdown_minute_label")
-        self.ui_timed_shutdown_hour_label = UI("ui_timed_shutdown_hour_label")
-        self.ui_timed_shutdown_minute_label = UI("ui_timed_shutdown_minute_label")
-        self.ui_timed_suspend_hour_label = UI("ui_timed_suspend_hour_label")
-        self.ui_timed_suspend_minute_label = UI("ui_timed_suspend_minute_label")
+        self.ui_timed_hour_label = UI("ui_timed_hour_label")
+        self.ui_timed_minute_label = UI("ui_timed_minute_label")
         self.ui_status_label = UI("ui_status_label")
+        self.ui_warning_label = UI("ui_warning_label")
 
         # buttons
         self.ui_save_button = UI("ui_save_button")
@@ -95,15 +90,13 @@ class MainWindow:
         self.ui_auto_shutdown_hour_minus_button.connect("clicked", lambda w: self.on_ui_decrease_hour_button(self.ui_auto_shutdown_hour_label))
         self.ui_auto_shutdown_minute_plus_button.connect("clicked", lambda w: self.on_ui_increase_minute_button(self.ui_auto_shutdown_minute_label))
         self.ui_auto_shutdown_minute_minus_button.connect("clicked", lambda w: self.on_ui_decrease_minute_button(self.ui_auto_shutdown_minute_label))
-        self.ui_timed_shutdown_hour_plus_button.connect("clicked", lambda w: self.on_ui_increase_hour_button(self.ui_timed_shutdown_hour_label))
-        self.ui_timed_shutdown_hour_minus_button.connect("clicked", lambda w: self.on_ui_decrease_hour_button(self.ui_timed_shutdown_hour_label))
-        self.ui_timed_shutdown_minute_plus_button.connect("clicked", lambda w: self.on_ui_increase_minute_button(self.ui_timed_shutdown_minute_label))
-        self.ui_timed_shutdown_minute_minus_button.connect("clicked", lambda w: self.on_ui_decrease_minute_button(self.ui_timed_shutdown_minute_label))
-        self.ui_timed_suspend_hour_plus_button.connect("clicked", lambda w: self.on_ui_increase_hour_button(self.ui_timed_suspend_hour_label))
-        self.ui_timed_suspend_hour_minus_button.connect("clicked", lambda w: self.on_ui_decrease_hour_button(self.ui_timed_suspend_hour_label))
-        self.ui_timed_suspend_minute_plus_button.connect("clicked", lambda w: self.on_ui_increase_minute_button(self.ui_timed_suspend_minute_label))
-        self.ui_timed_suspend_minute_minus_button.connect("clicked", lambda w: self.on_ui_decrease_minute_button(self.ui_timed_suspend_minute_label))
+        self.ui_timed_hour_plus_button.connect("clicked", lambda w: self.on_ui_increase_hour_button(self.ui_timed_hour_label))
+        self.ui_timed_hour_minus_button.connect("clicked", lambda w: self.on_ui_decrease_hour_button(self.ui_timed_hour_label))
+        self.ui_timed_minute_plus_button.connect("clicked", lambda w: self.on_ui_increase_minute_button(self.ui_timed_minute_label))
+        self.ui_timed_minute_minus_button.connect("clicked", lambda w: self.on_ui_decrease_minute_button(self.ui_timed_minute_label))
 
+        self.ui_warning_label.set_text("")
+        self.on_ui_show_warning_message()
         self.on_ui_show_settings()
 
     def on_ui_increase_hour_button(self, label):
@@ -135,47 +128,40 @@ class MainWindow:
         self.on_ui_set_status()
         self.save_eta_shutdown_config()
 
-
-    def on_ui_auto_shutdown_switch_toggled(self, switch, state):
+    def on_ui_auto_shutdown_switch_toggled(self, switch, _):
         is_active = switch.get_active()
         self.ui_auto_shutdown_hour_plus_button.set_sensitive(is_active)
         self.ui_auto_shutdown_hour_minus_button.set_sensitive(is_active)
         self.ui_auto_shutdown_minute_plus_button.set_sensitive(is_active)
         self.ui_auto_shutdown_minute_minus_button.set_sensitive(is_active)
 
-        if state:
-            self.ui_timed_suspend_switch.set_active(False)
-            self.ui_timed_shutdown_switch.set_active(False)
-
-    def on_ui_timed_shutdown_switch_toggled(self, switch, state):
+    def on_ui_timed_switch_toggled(self, switch, _):
         is_active = switch.get_active()
-        self.ui_timed_shutdown_hour_plus_button.set_sensitive(is_active)
-        self.ui_timed_shutdown_hour_minus_button.set_sensitive(is_active)
-        self.ui_timed_shutdown_minute_plus_button.set_sensitive(is_active)
-        self.ui_timed_shutdown_minute_minus_button.set_sensitive(is_active)
+        self.ui_timed_hour_plus_button.set_sensitive(is_active)
+        self.ui_timed_hour_minus_button.set_sensitive(is_active)
+        self.ui_timed_minute_plus_button.set_sensitive(is_active)
+        self.ui_timed_minute_minus_button.set_sensitive(is_active)
+        self.ui_timed_suspend_rbutton.set_sensitive(is_active)
+        self.ui_timed_shutdown_rbutton.set_sensitive(is_active)
 
-        if state:
-            self.ui_timed_suspend_switch.set_active(False)
-            self.ui_auto_shutdown_switch.set_active(False)
-
-    def on_ui_timed_suspend_switch_toggled(self, switch, state):
-        is_active = switch.get_active()
-        self.ui_timed_suspend_hour_plus_button.set_sensitive(is_active)
-        self.ui_timed_suspend_hour_minus_button.set_sensitive(is_active)
-        self.ui_timed_suspend_minute_plus_button.set_sensitive(is_active)
-        self.ui_timed_suspend_minute_minus_button.set_sensitive(is_active)
-
-        if state:
-            self.ui_auto_shutdown_switch.set_active(False)
-            self.ui_timed_shutdown_switch.set_active(False)
+    def on_ui_show_warning_message(self):
+        if self.ui_timed_switch.get_active():
+            if self.ui_timed_suspend_rbutton.get_active():
+                self.ui_warning_label.set_text("This mode may not work on some boards.")
+            else:
+                self.ui_warning_label.set_text("")
+        self.ui_warning_label.set_text("")
 
     def on_ui_set_status(self):
         if self.ui_auto_shutdown_switch.get_active():
             self.ui_status_label.set_text("Auto shutdown mode active")
-        elif self.ui_timed_shutdown_switch.get_active():
-            self.ui_status_label.set_text("Timed shutdown mode active")
-        elif self.ui_timed_suspend_switch.get_active():
-            self.ui_status_label.set_text("Timed suspend mode active")
+        elif self.ui_timed_switch.get_active():
+            if self.ui_timed_suspend_rbutton.get_active():
+                self.ui_status_label.set_text("Timed suspend mode active")
+                self.ui_warning_label.set_text("This mode may not work on some boards.")
+            else:
+                self.ui_status_label.set_text("Timed shutdown mode active")
+                self.ui_warning_label.set_text("")
         else:
             self.ui_status_label.set_text("No settings")
 
@@ -217,15 +203,15 @@ class MainWindow:
         }
 
         config["TIMED_SUSPEND"] = {
-            "enabled": str(self.ui_timed_suspend_switch.get_active()),
-            "hour": str(self.ui_timed_suspend_hour_label.get_text()),
-            "minute": str(self.ui_timed_suspend_minute_label.get_text())
+            "enabled": str(self.ui_timed_switch.get_active() and self.ui_timed_suspend_rbutton.get_active()),
+            "hour": str(self.ui_timed_hour_label.get_text()),
+            "minute": str(self.ui_timed_minute_label.get_text())
         }
 
         config["TIMED_SHUTDOWN"] = {
-            "enabled": str(self.ui_timed_shutdown_switch.get_active()),
-            "hour": str(self.ui_timed_shutdown_hour_label.get_text()),
-            "minute": str(self.ui_timed_shutdown_minute_label.get_text())
+            "enabled": str(self.ui_timed_switch.get_active() and self.ui_timed_shutdown_rbutton.get_active()),
+            "hour": str(self.ui_timed_hour_label.get_text()),
+            "minute": str(self.ui_timed_minute_label.get_text())
         }
 
         with open(CONFIG_FILE, "w") as file:
@@ -238,13 +224,18 @@ class MainWindow:
         self.ui_auto_shutdown_hour_label.set_text(config.get("AUTO_SHUTDOWN", "hour"))
         self.ui_auto_shutdown_minute_label.set_text(config.get("AUTO_SHUTDOWN", "minute"))
 
-        self.ui_timed_suspend_switch.set_active(config.getboolean("TIMED_SUSPEND", "enabled"))
-        self.ui_timed_suspend_hour_label.set_text(config.get("TIMED_SUSPEND", "hour"))
-        self.ui_timed_suspend_minute_label.set_text(config.get("TIMED_SUSPEND", "minute"))
+        suspend_radio_button = config.getboolean("TIMED_SUSPEND", "enabled")
+        self.ui_timed_suspend_rbutton.set_active(suspend_radio_button)
+        self.ui_timed_hour_label.set_text(config.get("TIMED_SUSPEND", "hour"))
+        self.ui_timed_minute_label.set_text(config.get("TIMED_SUSPEND", "minute"))
 
-        self.ui_timed_shutdown_switch.set_active(config.getboolean("TIMED_SHUTDOWN", "enabled"))
-        self.ui_timed_shutdown_hour_label.set_text(config.get("TIMED_SHUTDOWN", "hour"))
-        self.ui_timed_shutdown_minute_label.set_text(config.get("TIMED_SHUTDOWN", "minute"))
+        shutdown_radio_button = config.getboolean("TIMED_SHUTDOWN", "enabled")
+        self.ui_timed_shutdown_rbutton.set_active(shutdown_radio_button)
+        self.ui_timed_hour_label.set_text(config.get("TIMED_SHUTDOWN", "hour"))
+        self.ui_timed_minute_label.set_text(config.get("TIMED_SHUTDOWN", "minute"))
+
+        if suspend_radio_button or shutdown_radio_button:
+            self.ui_timed_switch.set_active(True)
 
         if config.getboolean("AUTO_SHUTDOWN", "enabled"):
             self.ui_status_label.set_text("Auto shutdown mode active")
@@ -254,3 +245,9 @@ class MainWindow:
             self.ui_status_label.set_text("Timed suspend mode active")
         else:
             self.ui_status_label.set_text("No settings")
+
+    def on_radio_button_toggled(self, button):
+        if button.get_active():
+            self.ui_warning_label.set_text("This mode may not work on some boards.")
+        else:
+            self.ui_warning_label.set_text("")
