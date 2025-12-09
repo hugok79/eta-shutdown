@@ -1,6 +1,8 @@
 import os
 import sys
 import time
+import subprocess
+import threading
 import configparser
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -33,6 +35,28 @@ def check_time(hour, minute):
     return nex.timestamp() - now.timestamp() < 0
 
 
+ret = False
+def send_notify(message, yes_msg, no_msg, timeout):
+    def send_notify_disp(disp):
+        global ret
+        cmd = ["env", "DISPLAY={}".format(disp),
+            "notify-send", "-w",
+            "-A", "true={}".format(yes_msg),
+            "-A", "false={}".format(no_msg),
+            "-t", str(timeout*1000), message]
+        log(cmd)
+        sp = subprocess.run(cmd, capture_output=True)
+        ret = (sp.stdout.decode("utf-8").strip() == "true")
+    ths = []
+    for display in os.listdir("/tmp/.X11-unix/"):
+        th = threading.Thread(target=send_notify_disp, args=[f":{display[1:]}"])
+        ths.append(th)
+    for th in ths:
+        th.start()
+    for th in ths:
+        th.join()
+    print(ret)
+    return ret
 
 def service():
     log("###### Eta Shutdown {} ######".format(time.time()))
@@ -61,3 +85,6 @@ def service():
         if check_time(hour, minute):
             print("auto shutdown")
             os.system("poweroff -f")
+
+if __name__ == "__main__":
+    send_notify(sys.argv[1], "Yes", "No", 10)
