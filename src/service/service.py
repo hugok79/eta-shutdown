@@ -76,8 +76,8 @@ def service():
     # timed shutdown
     mode = config["TIMED_SHUTDOWN"]["mode"]
     if mode != "none":
-        hour = int(config[sec]["hour"])
-        minute = int(config[sec]["minute"])
+        hour = int(config["TIMED_SHUTDOWN"]["hour"])
+        minute = int(config["TIMED_SHUTDOWN"]["minute"])
         req_idle = (hour*3600 + minute * 60)*1000
         print("req_idle:", req_idle)
         if idle_time > req_idle:
