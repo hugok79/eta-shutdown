@@ -35,8 +35,9 @@ def check_time(hour, minute):
     return nex.timestamp() - now.timestamp() < 0
 
 
-ret = False
+ret = None
 def send_notify(message, yes_msg, no_msg, timeout):
+    global ret
     def send_notify_disp(disp):
         global ret
         cmd = ["env", "DISPLAY={}".format(disp),
@@ -46,8 +47,10 @@ def send_notify(message, yes_msg, no_msg, timeout):
             "-t", str(timeout*1000), message]
         log(cmd)
         sp = subprocess.run(cmd, capture_output=True)
-        ret = (sp.stdout.decode("utf-8").strip() == "true")
+        if ret == None:
+            ret = (sp.stdout.decode("utf-8").strip() == "true")
     ths = []
+    ret = None
     for display in os.listdir("/tmp/.X11-unix/"):
         th = threading.Thread(target=send_notify_disp, args=[f":{display[1:]}"])
         ths.append(th)
