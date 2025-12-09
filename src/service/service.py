@@ -63,9 +63,14 @@ def send_notify(message, yes_msg, no_msg, timeout):
 
 message_shown = False
 delay = 0
+init=False
+ignore=False
 def service():
     global message_shown
     global delay
+    global init
+    global ignore_auto
+
     log("###### Eta Shutdown {} ######".format(time.time()))
     idle_time = -1
     for display in os.listdir("/tmp/.X11-unix/"):
@@ -86,9 +91,15 @@ def service():
             elif mode == "suspend":
                 os.system("systemctl suspend")
     # auto shutdown
-    if config["AUTO_SHUTDOWN"]["enabled"].lower() == "true":
+    if config["AUTO_SHUTDOWN"]["enabled"].lower() == "true" and not ignore_auto:
         hour = int(config["AUTO_SHUTDOWN"]["hour"])
         minute = int(config["AUTO_SHUTDOWN"]["minute"])
+        # check for first time
+        if not init:
+            init = True
+            if check_time(hour, minute, 0):
+                ignore_auto = True
+
         if check_time(hour, minute, (10*60*1000)):
             if not message_shown:
                 message_shown = True
