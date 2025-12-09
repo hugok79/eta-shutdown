@@ -31,7 +31,7 @@ config.read(CONFIG_FILE)
 def check_time(hour, minute, delay):
     now = datetime.now()
     nex = datetime(now.year, now.month, now.day, hour, minute)
-    print(now, nex)
+    print(now, nex, delay)
     return nex.timestamp() - delay - now.timestamp() < 0
 
 
@@ -90,8 +90,8 @@ def service():
         hour = int(config["AUTO_SHUTDOWN"]["hour"])
         minute = int(config["AUTO_SHUTDOWN"]["minute"])
         if check_time(hour, minute, (10*60*1000)):
-            message_shown = True
             if not message_shown:
+                message_shown = True
                 if send_notify("Sistem 10dk sonra kapatılacak.", "1 saat ertele", "Tamam", 30):
                     delay -= 60*60*1000
                     message_shown = False
