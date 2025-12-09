@@ -28,11 +28,11 @@ CONFIG_FILE = "/etc/pardus/eta-shutdown.conf"
 config = configparser.ConfigParser()
 config.read(CONFIG_FILE)
 
-def check_time(hour, minute):
+def check_time(hour, minute, delay):
     now = datetime.now()
     nex = datetime(now.year, now.month, now.day, hour, minute)
     print(now, nex)
-    return nex.timestamp() - now.timestamp() < 0
+    return nex.timestamp() - delay - now.timestamp() < 0
 
 
 ret = None
@@ -61,7 +61,11 @@ def send_notify(message, yes_msg, no_msg, timeout):
     print(ret)
     return ret
 
+message_shown = False
+delay = 0
 def service():
+    global message_shown
+    global delay
     log("###### Eta Shutdown {} ######".format(time.time()))
     idle_time = -1
     for display in os.listdir("/tmp/.X11-unix/"):
@@ -85,7 +89,13 @@ def service():
     if config["AUTO_SHUTDOWN"]["enabled"].lower() == "true":
         hour = int(config["AUTO_SHUTDOWN"]["hour"])
         minute = int(config["AUTO_SHUTDOWN"]["minute"])
-        if check_time(hour, minute):
+        if check_time(hour, minute, (10*60*1000)):
+            message_shown = True
+            if not message_shown:
+                if send_notify("Sistem 10dk sonra kapatılacak.", "1 saat ertele", "Tamam", 30):
+                    delay += 60*60*1000
+                    message_shown = False
+        if check_time(hour, minute, delay):
             print("auto shutdown")
             os.system("poweroff -f")
 
