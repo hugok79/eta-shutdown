@@ -187,14 +187,8 @@ class MainWindow:
                 "minute": "0"
             }
 
-            config["TIMED_SUSPEND"] = {
-                "enabled": "False",
-                "hour": "0",
-                "minute": "0"
-            }
-
             config["TIMED_SHUTDOWN"] = {
-                "enabled": "False",
+                "mode": "False",
                 "hour": "0",
                 "minute": "0"
             }
@@ -214,17 +208,16 @@ class MainWindow:
             "minute": str(self.ui_auto_shutdown_minute_label.get_text())
         }
 
-        config["TIMED_SUSPEND"] = {
-            "enabled": str(self.ui_timed_switch.get_active() and self.ui_timed_suspend_rbutton.get_active()),
-            "hour": str(self.ui_timed_hour_label.get_text()),
-            "minute": str(self.ui_timed_minute_label.get_text())
-        }
-
         config["TIMED_SHUTDOWN"] = {
-            "enabled": str(self.ui_timed_switch.get_active() and self.ui_timed_shutdown_rbutton.get_active()),
+            "mode": "none",
             "hour": str(self.ui_timed_hour_label.get_text()),
             "minute": str(self.ui_timed_minute_label.get_text())
         }
+        if self.ui_timed_switch.get_active():
+            if self.ui_timed_shutdown_rbutton.get_active():
+                config["TIMED_SHUTDOWN"]["mode"] = "shutdown"
+            elif self.ui_timed_suspend_rbutton.get_active():
+                config["TIMED_SHUTDOWN"]["mode"] = "suspend"
 
         with open(CONFIG_FILE, "w") as file:
             config.write(file)

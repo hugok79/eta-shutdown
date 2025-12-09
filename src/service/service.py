@@ -16,13 +16,8 @@ enabled = False
 hour = 01
 minute = 00
 
-[TIMED_SUSPEND]
-enabled = False
-hour = 00
-minute = 00
-
 [TIMED_SHUTDOWN]
-enabled = False
+mode = "shutdown"
 hour = 00
 minute = 00
 """
@@ -37,10 +32,7 @@ def check_time(hour, minute):
     print(now, nex)
     return nex.timestamp() - now.timestamp() < 0
 
-mode = {
-    "TIMED_SHUTDOWN": "poweroff -f",
-    "TIMED_SUSPEND": "systemctl suspend"
-}
+
 
 def service():
     log("###### Eta Shutdown {} ######".format(time.time()))
@@ -51,23 +43,21 @@ def service():
             idle_time = idle
     print("idle_time: {}".format(idle_time))
     # timed shutdown
-    for sec in mode.keys():
-        if sec in config and "enabled" in config[sec]:
-            if config[sec]["enabled"].lower() == "true":
-                if "hour" in config[sec] and "minute" in config[sec]:
-                    hour = int(config[sec]["hour"])
-                    minute = int(config[sec]["minute"])
-                    req_idle = (hour*3600 + minute * 60)*1000
-                    print("req_idle:", req_idle)
-                    if idle_time > req_idle:
-                        print("timed ",sec)
-                        os.system(mode[sec])
+    mode = config["TIMED_SHUTDOWN"]["mode"]
+    if mode != "none":
+        hour = int(config[sec]["hour"])
+        minute = int(config[sec]["minute"])
+        req_idle = (hour*3600 + minute * 60)*1000
+        print("req_idle:", req_idle)
+        if idle_time > req_idle:
+            if mode == "shutdown":
+                os.system("poweroff -f")
+            elif mode == "suspend":
+                os.system("systemctl suspend")
     # auto shutdown
-    if "AUTO_SHUTDOWN" in config and "enabled" in config["AUTO_SHUTDOWN"]:
-        if config["AUTO_SHUTDOWN"]["enabled"].lower() == "true":
-            if "hour" in config["AUTO_SHUTDOWN"] and "minute" in config["AUTO_SHUTDOWN"]:
-                hour = int(config["AUTO_SHUTDOWN"]["hour"])
-                minute = int(config["AUTO_SHUTDOWN"]["minute"])
-                if check_time(hour, minute):
-                    print("auto shutdown")
-                    os.system("poweroff -f")
+    if config["AUTO_SHUTDOWN"]["enabled"].lower() == "true":
+        hour = int(config["AUTO_SHUTDOWN"]["hour"])
+        minute = int(config["AUTO_SHUTDOWN"]["minute"])
+        if check_time(hour, minute):
+            print("auto shutdown")
+            os.system("poweroff -f")
