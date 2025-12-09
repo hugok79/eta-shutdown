@@ -93,7 +93,7 @@ def service():
             message_shown = True
             if not message_shown:
                 if send_notify("Sistem 10dk sonra kapatılacak.", "1 saat ertele", "Tamam", 30):
-                    delay += 60*60*1000
+                    delay -= 60*60*1000
                     message_shown = False
         if check_time(hour, minute, delay):
             print("auto shutdown")
