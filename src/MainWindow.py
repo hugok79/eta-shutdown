@@ -229,27 +229,25 @@ class MainWindow:
         self.ui_auto_shutdown_hour_label.set_text(config.get("AUTO_SHUTDOWN", "hour"))
         self.ui_auto_shutdown_minute_label.set_text(config.get("AUTO_SHUTDOWN", "minute"))
 
-        suspend_radio_button = config.getboolean("TIMED_SUSPEND", "enabled")
+        suspend_radio_button = (config.get("TIMED_SHUTDOWN", "mode") == "suspend")
         self.ui_timed_suspend_rbutton.set_active(suspend_radio_button)
-        self.ui_timed_hour_label.set_text(config.get("TIMED_SUSPEND", "hour"))
-        self.ui_timed_minute_label.set_text(config.get("TIMED_SUSPEND", "minute"))
 
-        shutdown_radio_button = config.getboolean("TIMED_SHUTDOWN", "enabled")
-        self.ui_timed_shutdown_rbutton.set_active(shutdown_radio_button)
+        self.ui_timed_shutdown_rbutton.set_active(not suspend_radio_button)
         self.ui_timed_hour_label.set_text(config.get("TIMED_SHUTDOWN", "hour"))
         self.ui_timed_minute_label.set_text(config.get("TIMED_SHUTDOWN", "minute"))
 
-        if suspend_radio_button or shutdown_radio_button:
+        timed_enabled = (config.get("TIMED_SHUTDOWN", "mode") != "none")
+        if timed_enabled:
             self.ui_timed_switch.set_active(True)
 
         if config.getboolean("AUTO_SHUTDOWN", "enabled"):
             self.ui_status_label.set_text(self.auto_mode_message)
-        elif config.getboolean("TIMED_SUSPEND", "enabled"):
-            self.ui_status_label.set_text(self.timed_shutdown_mode_message)
-        elif config.getboolean("TIMED_SHUTDOWN", "enabled"):
-            self.ui_status_label.set_text(self.timed_suspend_mode_message)
-        else:
+        elif not timed_enabled:
             self.ui_status_label.set_text(self.no_setting_message)
+        elif not suspend_radio_button:
+            self.ui_status_label.set_text(self.timed_shutdown_mode_message)
+        else:
+            self.ui_status_label.set_text(self.timed_suspend_mode_message)
 
     def on_radio_button_toggled(self, button):
         if button.get_active():
