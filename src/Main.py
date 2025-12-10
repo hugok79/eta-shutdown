@@ -9,7 +9,7 @@ from MainWindow import MainWindow
 
 class Application(Gtk.Application):
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, application_id="tr.org.eta.session-operations", flags=Gio.ApplicationFlags.NON_UNIQUE, **kwargs)
+        super().__init__(*args, application_id="tr.org.pardus.eta.shutdown", flags=Gio.ApplicationFlags.NON_UNIQUE, **kwargs)
 
     def do_activate(self):
         self.window = MainWindow(self)
