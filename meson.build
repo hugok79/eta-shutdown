@@ -8,3 +8,4 @@ install_data('data/eta-shutdown.systemd', install_dir : '/lib/systemd/system/',r
 install_data('data/tr.org.pardus.eta.shutdown.desktop', install_dir : '/usr/share/applications/')
 install_data('data/tr.org.pardus.eta.shutdown.policy', install_dir : '/usr/share/polkit-1/actions/')
 install_data('eta-shutdown', install_dir : '/usr/bin', install_mode: ['rwxr-xr-x'])
+install_data('data/eta-shutdown.svg', install_dir : '/usr/share/icons/hicolor/scalable/apps')
