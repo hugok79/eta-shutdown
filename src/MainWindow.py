@@ -187,7 +187,7 @@ class MainWindow:
                 "minute": "0"
             }
 
-            config["TIMED_SHUTDOWN"] = {
+            config["TIMED_MODE"] = {
                 "mode": "False",
                 "hour": "0",
                 "minute": "0"
@@ -208,16 +208,16 @@ class MainWindow:
             "minute": str(self.ui_auto_shutdown_minute_label.get_text())
         }
 
-        config["TIMED_SHUTDOWN"] = {
+        config["TIMED_MODE"] = {
             "mode": "none",
             "hour": str(self.ui_timed_hour_label.get_text()),
             "minute": str(self.ui_timed_minute_label.get_text())
         }
         if self.ui_timed_switch.get_active():
             if self.ui_timed_shutdown_rbutton.get_active():
-                config["TIMED_SHUTDOWN"]["mode"] = "shutdown"
+                config["TIMED_MODE"]["mode"] = "shutdown"
             elif self.ui_timed_suspend_rbutton.get_active():
-                config["TIMED_SHUTDOWN"]["mode"] = "suspend"
+                config["TIMED_MODE"]["mode"] = "suspend"
 
         with open(CONFIG_FILE, "w") as file:
             config.write(file)
@@ -229,14 +229,14 @@ class MainWindow:
         self.ui_auto_shutdown_hour_label.set_text(config.get("AUTO_SHUTDOWN", "hour"))
         self.ui_auto_shutdown_minute_label.set_text(config.get("AUTO_SHUTDOWN", "minute"))
 
-        suspend_radio_button = (config.get("TIMED_SHUTDOWN", "mode") == "suspend")
+        suspend_radio_button = (config.get("TIMED_MODE", "mode") == "suspend")
         self.ui_timed_suspend_rbutton.set_active(suspend_radio_button)
 
         self.ui_timed_shutdown_rbutton.set_active(not suspend_radio_button)
-        self.ui_timed_hour_label.set_text(config.get("TIMED_SHUTDOWN", "hour"))
-        self.ui_timed_minute_label.set_text(config.get("TIMED_SHUTDOWN", "minute"))
+        self.ui_timed_hour_label.set_text(config.get("TIMED_MODE", "hour"))
+        self.ui_timed_minute_label.set_text(config.get("TIMED_MODE", "minute"))
 
-        timed_enabled = (config.get("TIMED_SHUTDOWN", "mode") != "none")
+        timed_enabled = (config.get("TIMED_MODE", "mode") != "none")
         if timed_enabled:
             self.ui_timed_switch.set_active(True)
 
