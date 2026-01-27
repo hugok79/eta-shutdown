@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
-Name=Power Off the Board
-Name[tr]=Tahtayı Kapat
+Name=Power Off the System
+Name[tr]=Sistemi Kapat
 Exec=python3 /usr/share/eta/eta-shutdown/src/ShutdownMenu.py
 Icon=system-shutdown
 Categories=System;

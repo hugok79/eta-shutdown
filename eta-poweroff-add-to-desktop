@@ -2,7 +2,7 @@
 
 user_desktop=`xdg-user-dir DESKTOP`
 user_desktop_file="$user_desktop/eta-poweroff.desktop"
-root_desktop_file="/usr/share/applications/eta-poweroff.desktop"
+root_desktop_file="/usr/share/applications/eta-poweroff-menu.desktop"
 
 config_dir="$HOME/.config/eta-poweroff"
 if ! [[ -d "$config_dir" ]]; then
