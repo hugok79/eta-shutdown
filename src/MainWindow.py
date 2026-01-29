@@ -1,8 +1,11 @@
-import configparser
 import os
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import GLib, Gio, Gtk
+
+import configparser
+import subprocess
+
 
 import locale
 from locale import gettext as _
@@ -221,6 +224,8 @@ class MainWindow:
 
         with open(CONFIG_FILE, "w") as file:
             config.write(file)
+
+        subprocess.run(["systemctl", "restart", "eta-shutdown"])
 
     def on_ui_show_settings(self):
         config = self.load_or_create_eta_shutdown_config()
