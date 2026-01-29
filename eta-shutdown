@@ -3,11 +3,19 @@
 import os
 import sys
 
+if "--menu" in sys.argv:
+    sys.path.insert(0, '/usr/share/eta/eta-shutdown/src/')
+    from ShutdownMenu import ShutdownMenu
+    menu=ShutdownMenu()
+    Gtk.main()
+
+
 # Check root
 if os.getuid() != 0:
     import subprocess
     sp = subprocess.run(["pkexec", __file__])
     exit(sp.returncode)
+
 
 sys.path.insert(0, '/usr/share/eta/eta-shutdown/src/')
 import Main
