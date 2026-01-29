@@ -13,4 +13,5 @@ install_data('data/tr.org.pardus.eta.shutdown.policy', install_dir : '/usr/share
 install_data('eta-shutdown', install_dir : '/usr/bin', install_mode: ['rwxr-xr-x'])
 install_data('eta-poweroff-add-to-desktop', install_dir : '/usr/libexec', install_mode: ['rwxr-xr-x'])
 install_data('data/eta-shutdown.svg', install_dir : '/usr/share/icons/hicolor/scalable/apps')
+install_data('data/eta-shutdown-settings.svg', install_dir : '/usr/share/icons/hicolor/scalable/apps')
 install_subdir('data/icons', install_dir : '/usr/share/icons/hicolor/scalable/actions',  strip_directory: true)
