@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-05 13:58+0300\n"
+"POT-Creation-Date: 2026-01-29 11:24+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,4 +71,20 @@ msgstr ""
 
 #: src/MainWindow.py:104
 msgid "Timed shutdown mode active"
+msgstr ""
+
+#: src/ShutdownMenu.py:28
+msgid "Eta Shutdown"
+msgstr ""
+
+#: src/ShutdownMenu.py:32
+msgid "Power Off"
+msgstr ""
+
+#: src/ShutdownMenu.py:33
+msgid "Restart"
+msgstr ""
+
+#: src/ShutdownMenu.py:34
+msgid "Log Out"
 msgstr ""
