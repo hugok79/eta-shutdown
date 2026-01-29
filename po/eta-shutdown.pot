@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-29 08:40+0000\n"
+"POT-Creation-Date: 2026-01-29 17:41+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,60 +17,68 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ui/MainWindow.glade:75
-msgid "Auto Shutdown Mode"
+#: ui/MainWindow.glade:76
+msgid "Static Shutdown Mode"
 msgstr ""
 
-#: ui/MainWindow.glade:115
-msgid "Select Time: "
+#: ui/MainWindow.glade:118
+msgid "Set Time (24h format) : "
 msgstr ""
 
-#: ui/MainWindow.glade:270
-msgid "Timed Mode"
+#: ui/MainWindow.glade:323
+msgid "Countdown Mode"
 msgstr ""
 
-#: ui/MainWindow.glade:308
-msgid "Timed Suspend"
+#: ui/MainWindow.glade:365
+msgid "Set Countdown"
 msgstr ""
 
-#: ui/MainWindow.glade:325
-msgid "Timed Shutdown"
+#: ui/MainWindow.glade:556
+msgid "Select Action"
 msgstr ""
 
-#: ui/MainWindow.glade:356
-msgid "If untouched for"
+#: ui/MainWindow.glade:571
+msgid "Suspend"
 msgstr ""
 
-#: ui/MainWindow.glade:522
-msgid "Status: "
+#: ui/MainWindow.glade:588
+msgid "Shutdown"
 msgstr ""
 
-#: ui/MainWindow.glade:537 src/MainWindow.py:105
-msgid "No settings"
-msgstr ""
-
-#: ui/MainWindow.glade:555
+#: ui/MainWindow.glade:632
 msgid "Save"
 msgstr ""
 
-#: ui/MainWindow.glade:581 src/ShutdownMenu.py:29
-msgid "ETA Shutdown"
+#: ui/MainWindow.glade:657
+msgid "Status: "
 msgstr ""
 
-#: src/MainWindow.py:101
+#: ui/MainWindow.glade:672 src/MainWindow.py:110
+msgid "No settings"
+msgstr ""
+
+#: ui/MainWindow.glade:716
+msgid "ETA Shutdown Timer"
+msgstr ""
+
+#: src/MainWindow.py:106
 msgid "This mode may not work on some boards."
 msgstr ""
 
-#: src/MainWindow.py:102
+#: src/MainWindow.py:107
 msgid "Auto shutdown mode active"
 msgstr ""
 
-#: src/MainWindow.py:103
+#: src/MainWindow.py:108
 msgid "Timed suspend mode active"
 msgstr ""
 
-#: src/MainWindow.py:104
+#: src/MainWindow.py:109
 msgid "Timed shutdown mode active"
+msgstr ""
+
+#: src/ShutdownMenu.py:29
+msgid "ETA Shutdown"
 msgstr ""
 
 #: src/ShutdownMenu.py:33
