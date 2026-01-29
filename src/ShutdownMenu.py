@@ -25,7 +25,8 @@ class ShutdownMenu:
         window = Gtk.Window()
         window.connect("destroy", Gtk.main_quit)
         window.set_skip_taskbar_hint(True)
-        window.set_title(_("Eta Shutdown"))
+        window.set_position(Gtk.WindowPosition.CENTER)
+        window.set_title(_("ETA Shutdown"))
 
         box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         box.set_spacing(18)

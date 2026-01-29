@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-29 11:24+0300\n"
+"POT-Creation-Date: 2026-01-29 08:40+0000\n"
 "PO-Revision-Date: 2025-12-05 13:57+0300\n"
 "Last-Translator: busra.cagliyan <busra.cagliyan@pardus.org.tr>\n"
 "Language-Team: Turkish <dev@pardus.org.tr>\n"
@@ -52,7 +52,7 @@ msgstr "Ayar yok"
 msgid "Save"
 msgstr "Kaydet"
 
-#: ui/MainWindow.glade:581
+#: ui/MainWindow.glade:581 src/ShutdownMenu.py:29
 msgid "ETA Shutdown"
 msgstr "ETA Kapat"
 
@@ -72,18 +72,15 @@ msgstr "Zaman ayarlı uyku modu etkin"
 msgid "Timed shutdown mode active"
 msgstr "Zaman ayarlı kapatma modu etkin"
 
-#: src/ShutdownMenu.py:28
-msgid "Eta Shutdown"
-msgstr "Eta Kapat"
-
-#: src/ShutdownMenu.py:32
+#: src/ShutdownMenu.py:33
 msgid "Power Off"
 msgstr "Kapat"
 
-#: src/ShutdownMenu.py:33
+#: src/ShutdownMenu.py:34
 msgid "Restart"
 msgstr "Yeniden Başlat"
 
-#: src/ShutdownMenu.py:34
+#: src/ShutdownMenu.py:35
 msgid "Log Out"
 msgstr "Çıkış"
+
