@@ -56,6 +56,9 @@ class ShutdownMenu:
         button.set_relief(Gtk.ReliefStyle.NONE)
         return button
 
-if __name__ == "__main__":
+def run():
     menu=ShutdownMenu()
     Gtk.main()
+
+if __name__ == "__main__":
+    run()

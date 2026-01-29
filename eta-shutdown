@@ -5,10 +5,9 @@ import sys
 
 if "--menu" in sys.argv:
     sys.path.insert(0, '/usr/share/eta/eta-shutdown/src/')
-    from ShutdownMenu import ShutdownMenu
-    menu=ShutdownMenu()
-    Gtk.main()
-
+    from ShutdownMenu import run
+    run()
+    exit(0)
 
 # Check root
 if os.getuid() != 0:
