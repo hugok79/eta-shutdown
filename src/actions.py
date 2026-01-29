@@ -23,4 +23,4 @@ if "poweroff" in sys.argv:
     poweroff()
 
 if "reboot" in sys.argv:
-    poweroff()
+    reboot()
