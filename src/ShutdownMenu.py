@@ -30,8 +30,8 @@ class ShutdownMenu:
 
         box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         box.set_spacing(18)
-        box.pack_start(self.create_button("eta-shutdown-poweroff", _("Power Off"), ["pkexec", ACTION, "reboot"]), True, True, 0)
-        box.pack_start(self.create_button("eta-shutdown-reboot", _("Restart"), ["pkexec", ACTION, "poweroff"]), True, True, 0)
+        box.pack_start(self.create_button("eta-shutdown-poweroff", _("Power Off"), ["pkexec", ACTION, "poweroff"]), True, True, 0)
+        box.pack_start(self.create_button("eta-shutdown-reboot", _("Restart"), ["pkexec", ACTION, "reboot"]), True, True, 0)
         box.pack_start(self.create_button("eta-shutdown-logout", _("Log Out"), ["pkill","-KILL", "-u", os.environ["USER"]]), True, True, 0)
 
         window.add(box)
