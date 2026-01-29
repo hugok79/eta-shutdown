@@ -1,5 +1,43 @@
-eta-shutdown (0.1.0) unstable; urgency=medium
+eta-shutdown (0.0.1) unstable; urgency=medium
 
-  * initial
+  [ busra ]
+  * add translation
 
- -- Büşra ÇAĞLIYAN <busra.cagliyan@pardus.org.tr>  Mon, 01 Dec 2025 11:25:25 +0300
+  [ Ali Riza KESKIN ]
+  * fix application launcher
+  * fix translation name
+  * change pkexec call mechanism
+  * config simplified
+  * add notify
+  * fix notify question bug
+  * notify message added
+  * delay time must be negative
+  * fix undefined sec
+  * fix gui
+  * service notify fix
+  * check for first time for prevent boot bug
+
+  [ busra ]
+  * fix application name
+  * fix config variable name
+
+  [ Ali Riza KESKIN ]
+  * add app icon
+  * add poweroff menu
+  * add poweroff dialog icons
+  * override existing file for first time
+  * fix conflict with etap-settings
+  * ui improvements
+  * fixes and translation
+  * add settings icon
+  * fix reboot
+  * Gtk.WindowPosition.CENTER
+  * fix
+  * add --menu parameter
+  * cli fix
+  * change exec
+
+  [ Fatih Altun ]
+  * Update debian/copyright
+
+ -- Fatih Altun <fatih.altun@pardus.org.tr>  Thu, 29 Jan 2026 09:13:22 +0000
