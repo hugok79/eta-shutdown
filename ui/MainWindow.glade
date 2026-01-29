@@ -4,6 +4,8 @@
   <requires lib="gtk+" version="3.24"/>
   <object class="GtkWindow" id="ui_main_window">
     <property name="can-focus">False</property>
+    <property name="resizable">False</property>
+    <property name="default-width">500</property>
     <child>
       <object class="GtkBox" id="ui_main_box">
         <property name="visible">True</property>
@@ -55,24 +57,23 @@
           <object class="GtkBox" id="ui_content_box">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="margin-start">21</property>
-            <property name="margin-end">21</property>
-            <property name="margin-top">13</property>
-            <property name="margin-bottom">13</property>
+            <property name="margin-top">34</property>
+            <property name="margin-bottom">21</property>
             <property name="orientation">vertical</property>
             <property name="spacing">13</property>
             <child>
               <object class="GtkBox" id="ui_auto_shutdown_box">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="margin-top">13</property>
-                <property name="margin-bottom">13</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <property name="spacing">7</property>
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="halign">start</property>
-                    <property name="label" translatable="yes">Auto Shutdown Mode</property>
+                    <property name="label" translatable="yes">Static Shutdown Mode</property>
                     <attributes>
                       <attribute name="weight" value="bold"/>
                     </attributes>
@@ -104,15 +105,16 @@
               </packing>
             </child>
             <child>
-              <object class="GtkBox" id="ui_auto_shutdown_time_box">
+              <object class="GtkBox" id="ui_shutdown_mode_box">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="orientation">vertical</property>
                 <property name="spacing">7</property>
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="label" translatable="yes">Select Time: </property>
+                    <property name="label" translatable="yes">Set Time (24h format) : </property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -121,42 +123,88 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkBox" id="ui_auto_shutdown_minute_box">
+                  <object class="GtkBox" id="ui_auto_shutdown_time_box">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
                     <property name="spacing">7</property>
                     <child>
-                      <object class="GtkButton" id="ui_auto_shutdown_minute_plus_button">
-                        <property name="label">+</property>
+                      <object class="GtkBox" id="ui_auto_shutdown_hour_box">
                         <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="receives-default">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="spacing">7</property>
+                        <property name="homogeneous">True</property>
+                        <child>
+                          <object class="GtkButton" id="ui_auto_shutdown_hour_plus_button">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="icon-name">value-increase-symbolic</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="ui_auto_shutdown_hour_minus_button">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="icon-name">value-decrease-symbolic</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="ui_auto_shutdown_hour_label">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label">00</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                              <attribute name="size" value="20000"/>
+                            </attributes>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">2</property>
+                          </packing>
+                        </child>
                       </object>
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkButton" id="ui_auto_shutdown_minute_minus_button">
-                        <property name="label">-</property>
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="receives-default">True</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="pack-type">end</property>
                         <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="ui_auto_shutdown_minute_label">
+                      <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label">00</property>
+                        <property name="label">:</property>
+                        <attributes>
+                          <attribute name="weight" value="bold"/>
+                          <attribute name="size" value="20000"/>
+                        </attributes>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -164,77 +212,78 @@
                         <property name="position">2</property>
                       </packing>
                     </child>
+                    <child>
+                      <object class="GtkBox" id="ui_auto_shutdown_minute_box">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="spacing">7</property>
+                        <property name="homogeneous">True</property>
+                        <child>
+                          <object class="GtkLabel" id="ui_auto_shutdown_minute_label">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label">00</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                              <attribute name="size" value="20000"/>
+                            </attributes>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="ui_auto_shutdown_minute_plus_button">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="icon-name">value-increase-symbolic</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="ui_auto_shutdown_minute_minus_button">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="icon-name">value-decrease-symbolic</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">2</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">3</property>
+                      </packing>
+                    </child>
                   </object>
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">True</property>
-                    <property name="pack-type">end</property>
                     <property name="position">1</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="label">:</property>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="pack-type">end</property>
-                    <property name="position">4</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkBox" id="ui_auto_shutdown_hour_box">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="spacing">7</property>
-                    <child>
-                      <object class="GtkButton" id="ui_auto_shutdown_hour_plus_button">
-                        <property name="label">+</property>
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="receives-default">True</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="ui_auto_shutdown_hour_label">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="label">00</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkButton" id="ui_auto_shutdown_hour_minus_button">
-                        <property name="label">-</property>
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="receives-default">True</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="pack-type">end</property>
-                        <property name="position">2</property>
-                      </packing>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="pack-type">end</property>
-                    <property name="position">10</property>
                   </packing>
                 </child>
               </object>
@@ -248,6 +297,8 @@
               <object class="GtkSeparator">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="margin-top">7</property>
+                <property name="margin-bottom">8</property>
                 <property name="orientation">vertical</property>
               </object>
               <packing>
@@ -260,14 +311,15 @@
               <object class="GtkBox" id="ui_timed_box">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="margin-top">13</property>
-                <property name="margin-bottom">13</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <property name="spacing">7</property>
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="halign">start</property>
-                    <property name="label" translatable="yes">Timed Mode</property>
+                    <property name="label" translatable="yes">Countdown Mode</property>
                     <attributes>
                       <attribute name="weight" value="bold"/>
                     </attributes>
@@ -299,20 +351,16 @@
               </packing>
             </child>
             <child>
-              <object class="GtkBox" id="ui_radio_button_box">
+              <object class="GtkBox" id="ui_countdown_mode_box">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="homogeneous">True</property>
+                <property name="orientation">vertical</property>
+                <property name="spacing">7</property>
                 <child>
-                  <object class="GtkRadioButton" id="ui_timed_suspend_rbutton">
-                    <property name="label" translatable="yes">Timed Suspend</property>
+                  <object class="GtkLabel">
                     <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="focus-on-click">False</property>
-                    <property name="receives-default">False</property>
-                    <property name="active">True</property>
-                    <property name="draw-indicator">True</property>
-                    <signal name="toggled" handler="on_radio_button_toggled" swapped="no"/>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes">Set Countdown</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -321,15 +369,162 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkRadioButton" id="ui_timed_shutdown_rbutton">
-                    <property name="label" translatable="yes">Timed Shutdown</property>
+                  <object class="GtkBox" id="ui_timed_time_box">
                     <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="focus-on-click">False</property>
-                    <property name="receives-default">False</property>
-                    <property name="active">True</property>
-                    <property name="draw-indicator">True</property>
-                    <property name="group">ui_timed_suspend_rbutton</property>
+                    <property name="can-focus">False</property>
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
+                    <property name="spacing">7</property>
+                    <child>
+                      <object class="GtkBox" id="ui_timed_hour_box">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="spacing">7</property>
+                        <property name="homogeneous">True</property>
+                        <child>
+                          <object class="GtkButton" id="ui_timed_hour_plus_button">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="icon-name">value-increase-symbolic</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="ui_timed_hour_minus_button">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="icon-name">value-decrease-symbolic</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="ui_timed_hour_label">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label">00</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                              <attribute name="size" value="20000"/>
+                            </attributes>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">2</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label">:</property>
+                        <attributes>
+                          <attribute name="weight" value="bold"/>
+                          <attribute name="size" value="20000"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkBox" id="ui_timed_minute_box">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="spacing">7</property>
+                        <property name="homogeneous">True</property>
+                        <child>
+                          <object class="GtkLabel" id="ui_timed_minute_label">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="label">00</property>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                              <attribute name="size" value="20000"/>
+                            </attributes>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="ui_timed_minute_plus_button">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="icon-name">value-increase-symbolic</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="ui_timed_minute_minus_button">
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">True</property>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="icon-name">value-decrease-symbolic</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">2</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">3</property>
+                      </packing>
+                    </child>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -345,15 +540,18 @@
               </packing>
             </child>
             <child>
-              <object class="GtkBox" id="ui_timed_time_box">
+              <object class="GtkBox">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <property name="orientation">vertical</property>
                 <property name="spacing">7</property>
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="label" translatable="yes">If untouched for</property>
+                    <property name="label" translatable="yes">Select Action</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -362,16 +560,20 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkBox" id="ui_timed_minute_box">
+                  <object class="GtkBox" id="ui_radio_button_box">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="spacing">7</property>
+                    <property name="homogeneous">True</property>
                     <child>
-                      <object class="GtkButton" id="ui_timed_minute_plus_button">
-                        <property name="label">+</property>
+                      <object class="GtkRadioButton" id="ui_timed_suspend_rbutton">
+                        <property name="label" translatable="yes">Suspend</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
-                        <property name="receives-default">True</property>
+                        <property name="focus-on-click">False</property>
+                        <property name="receives-default">False</property>
+                        <property name="active">True</property>
+                        <property name="draw-indicator">True</property>
+                        <signal name="toggled" handler="on_radio_button_toggled" swapped="no"/>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -380,10 +582,14 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="ui_timed_minute_label">
+                      <object class="GtkRadioButton" id="ui_timed_shutdown_rbutton">
+                        <property name="label" translatable="yes">Shutdown</property>
                         <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="label">00</property>
+                        <property name="can-focus">True</property>
+                        <property name="focus-on-click">False</property>
+                        <property name="receives-default">False</property>
+                        <property name="draw-indicator">True</property>
+                        <property name="group">ui_timed_suspend_rbutton</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -391,104 +597,26 @@
                         <property name="position">1</property>
                       </packing>
                     </child>
-                    <child>
-                      <object class="GtkButton" id="ui_timed_minute_minus_button">
-                        <property name="label">-</property>
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="receives-default">True</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="pack-type">end</property>
-                        <property name="position">2</property>
-                      </packing>
-                    </child>
                   </object>
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">True</property>
-                    <property name="pack-type">end</property>
                     <property name="position">1</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="label">:</property>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="pack-type">end</property>
-                    <property name="position">3</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkBox" id="ui_timed_hour_box">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="spacing">7</property>
-                    <child>
-                      <object class="GtkButton" id="ui_timed_hour_plus_button">
-                        <property name="label">+</property>
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="receives-default">True</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="ui_timed_hour_label">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="label">00</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkButton" id="ui_timed_hour_minus_button">
-                        <property name="label">-</property>
-                        <property name="visible">True</property>
-                        <property name="can-focus">True</property>
-                        <property name="receives-default">True</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="pack-type">end</property>
-                        <property name="position">2</property>
-                      </packing>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="pack-type">end</property>
-                    <property name="position">5</property>
                   </packing>
                 </child>
               </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">5</property>
+                <property name="position">6</property>
               </packing>
             </child>
             <child>
               <object class="GtkSeparator">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="margin-top">7</property>
+                <property name="margin-bottom">7</property>
                 <property name="orientation">vertical</property>
               </object>
               <packing>
@@ -498,23 +626,28 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="ui_warning_label">
+              <object class="GtkButton" id="ui_save_button">
+                <property name="label" translatable="yes">Save</property>
+                <property name="width-request">150</property>
                 <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <attributes>
-                  <attribute name="weight" value="normal"/>
-                </attributes>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <signal name="pressed" handler="on_ui_save_button_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">6</property>
+                <property name="position">7</property>
               </packing>
             </child>
             <child>
               <object class="GtkBox" id="ui_status_box">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
@@ -546,23 +679,23 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="pack-type">end</property>
                 <property name="position">8</property>
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="ui_save_button">
-                <property name="label" translatable="yes">Save</property>
+              <object class="GtkLabel" id="ui_warning_label">
                 <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
-                <signal name="pressed" handler="on_ui_save_button_clicked" swapped="no"/>
+                <property name="can-focus">False</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <attributes>
+                  <attribute name="weight" value="normal"/>
+                </attributes>
               </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="pack-type">end</property>
-                <property name="position">10</property>
+                <property name="position">9</property>
               </packing>
             </child>
           </object>
@@ -578,7 +711,7 @@
       <object class="GtkHeaderBar" id="ui_main_headerbar">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <property name="title" translatable="yes">ETA Shutdown</property>
+        <property name="title" translatable="yes">ETA Shutdown Timer</property>
         <property name="show-close-button">True</property>
         <child>
           <placeholder/>

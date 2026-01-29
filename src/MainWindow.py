@@ -59,6 +59,8 @@ class MainWindow:
         self.ui_timed_shutdown_rbutton = UI("ui_timed_shutdown_rbutton")
         
         # time boxes
+        self.ui_countdown_mode_box = UI("ui_countdown_mode_box")
+        self.ui_shutdown_mode_box = UI("ui_shutdown_mode_box")
         self.ui_auto_shutdown_time_box = UI("ui_auto_shutdown_time_box")
         self.ui_timed_time_box = UI("ui_timed_shutdown_time_box")
         self.ui_auto_shutdown_hour_box = UI("ui_auto_shutdown_hour_box")
