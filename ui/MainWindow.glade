@@ -89,6 +89,7 @@
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <signal name="notify" handler="on_ui_auto_shutdown_switch_toggled" swapped="no"/>
+                    <signal name="state-set" handler="on_ui_auto_shutdown_switch_state_set" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -335,6 +336,7 @@
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <signal name="notify" handler="on_ui_timed_switch_toggled" swapped="no"/>
+                    <signal name="state-set" handler="on_ui_timed_switch_state_set" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>

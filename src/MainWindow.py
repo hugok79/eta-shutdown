@@ -256,8 +256,18 @@ class MainWindow:
         else:
             self.ui_status_label.set_text(self.timed_suspend_mode_message)
 
+        self.ui_shutdown_mode_box.set_sensitive(config.getboolean("AUTO_SHUTDOWN", "enabled"))
+        self.ui_countdown_mode_box.set_sensitive(timed_enabled)
+
+
     def on_radio_button_toggled(self, button):
         if button.get_active():
             self.ui_warning_label.set_text(self.warning_message)
         else:
             self.ui_warning_label.set_text("")
+
+    def on_ui_auto_shutdown_switch_state_set(self, switch, state):
+        self.ui_shutdown_mode_box.set_sensitive(state)
+
+    def on_ui_timed_switch_state_set(self, switch, state):
+        self.ui_countdown_mode_box.set_sensitive(state)
