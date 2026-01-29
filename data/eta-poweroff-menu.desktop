@@ -2,6 +2,6 @@
 Type=Application
 Name=Power Off the System
 Name[tr]=Sistemi Kapat
-Exec=python3 /usr/share/eta/eta-shutdown/src/ShutdownMenu.py
+Exec=eta-shutdown --menu
 Icon=eta-shutdown
 Categories=System;
