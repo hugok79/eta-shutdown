@@ -91,8 +91,10 @@ def service():
         hour = int(config["TIMED_MODE"]["hour"])
         minute = int(config["TIMED_MODE"]["minute"])
         req_idle = (hour*3600 + minute * 60)*1000
+        if req_idle < 5*60*1000:
+            req_idle = 5*60*1000
         print("req_idle:", req_idle)
-        if req_idle > 0 and idle_time > req_idle:
+        if idle_time > req_idle:
             if mode == "shutdown":
                 os.system("poweroff -f")
             elif mode == "suspend":
