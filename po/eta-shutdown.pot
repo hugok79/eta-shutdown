@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-29 17:41+0300\n"
+"POT-Creation-Date: 2026-01-30 14:51+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -82,13 +82,17 @@ msgid "ETA Shutdown"
 msgstr ""
 
 #: src/ShutdownMenu.py:33
-msgid "Power Off"
+msgid "Force Power Off"
 msgstr ""
 
 #: src/ShutdownMenu.py:34
+msgid "Power Off"
+msgstr ""
+
+#: src/ShutdownMenu.py:39
 msgid "Restart"
 msgstr ""
 
-#: src/ShutdownMenu.py:35
+#: src/ShutdownMenu.py:40
 msgid "Log Out"
 msgstr ""

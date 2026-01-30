@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-29 17:41+0300\n"
+"POT-Creation-Date: 2026-01-30 14:51+0300\n"
 "PO-Revision-Date: 2026-01-29 17:43+0300\n"
 "Last-Translator: Fatih Altun <fatih.altun@pardus.org.tr>\n"
 "Language-Team: Turkish <dev@pardus.org.tr>\n"
@@ -82,22 +82,18 @@ msgid "ETA Shutdown"
 msgstr "ETA Kapat"
 
 #: src/ShutdownMenu.py:33
+msgid "Force Power Off"
+msgstr "Zorla Kapat"
+
+#: src/ShutdownMenu.py:34
 msgid "Power Off"
 msgstr "Kapat"
 
-#: src/ShutdownMenu.py:34
+#: src/ShutdownMenu.py:39
 msgid "Restart"
 msgstr "Yeniden Başlat"
 
-#: src/ShutdownMenu.py:35
+#: src/ShutdownMenu.py:40
 msgid "Log Out"
 msgstr "Çıkış"
 
-#~ msgid "Timed Mode"
-#~ msgstr "Zaman Ayarlı Mod"
-
-#~ msgid "Timed Shutdown"
-#~ msgstr "Zaman Ayarlı Kapatma"
-
-#~ msgid "If untouched for"
-#~ msgstr "Şu kadar süre dokunulmazsa"
