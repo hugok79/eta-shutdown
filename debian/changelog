@@ -1,3 +1,19 @@
+eta-shutdown (0.0.3) unstable; urgency=medium
+
+  [ Ali Riza KESKIN ]
+  * typo fix
+  * check X11 active before notify-send
+  * notify timeout fix
+  * ignore 0 idle time
+  * add force shutdown button
+  * icon update
+  * typo fix
+  * min req time
+  * minimum timeout gui
+  * change order
+
+ -- Fatih Altun <fatih.altun@pardus.org.tr>  Fri, 30 Jan 2026 15:53:16 +0300
+
 eta-shutdown (0.0.2) unstable; urgency=medium
 
   [ Ali Riza KESKIN ]
