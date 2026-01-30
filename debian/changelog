@@ -1,3 +1,11 @@
+eta-shutdown (0.0.4) unstable; urgency=medium
+
+  [ Ali Riza KESKIN ]
+  * fix first time check
+  * fixes about variables
+
+ -- Fatih Altun <fatih.altun@pardus.org.tr>  Fri, 30 Jan 2026 15:50:00 +0000
+
 eta-shutdown (0.0.3) unstable; urgency=medium
 
   [ Ali Riza KESKIN ]
