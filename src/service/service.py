@@ -35,16 +35,21 @@ def check_time(hour, minute, delay):
     return nex.timestamp() - delay - now.timestamp() < 0
 
 
+def check_x11(disp):
+    sp = subprocess.run(["env", "DISPLAY={}".format(disp), "xset", "-q"], capture_output=True)
+    return sp.returncode == 0
+
 ret = None
 def send_notify(message, yes_msg, no_msg, timeout):
     global ret
     def send_notify_disp(disp):
         global ret
-        cmd = ["env", "DISPLAY={}".format(disp),
+        cmd = ["timeout", str(timeout),
+            "env", "DISPLAY={}".format(disp),
             "notify-send", "-w",
             "-A", "true={}".format(yes_msg),
             "-A", "false={}".format(no_msg),
-            "-t", str(timeout*1000), message]
+            "-t", str(timeout), message]
         log(cmd)
         sp = subprocess.run(cmd, capture_output=True)
         if ret == None:
@@ -52,8 +57,9 @@ def send_notify(message, yes_msg, no_msg, timeout):
     ths = []
     ret = None
     for display in os.listdir("/tmp/.X11-unix/"):
-        th = threading.Thread(target=send_notify_disp, args=[f":{display[1:]}"])
-        ths.append(th)
+        if check_x11(f":{display[1:]}"):
+            th = threading.Thread(target=send_notify_disp, args=[f":{display[1:]}"])
+            ths.append(th)
     for th in ths:
         th.start()
     for th in ths:
@@ -101,11 +107,11 @@ def service():
             if check_time(hour, minute, 0):
                 ignore_auto = True
 
-        if check_time(hour, minute, (10*60*1000)):
+        if check_time(hour, minute, (600)):
             if not message_shown:
                 message_shown = True
                 if send_notify("Sistem 10dk sonra kapatılacak.", "1 saat ertele", "Tamam", 30):
-                    delay -= 60*60*1000
+                    delay -= 60*60
                     message_shown = False
         if check_time(hour, minute, delay):
             print("auto shutdown")
