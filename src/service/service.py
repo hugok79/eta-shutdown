@@ -78,6 +78,12 @@ def service():
     global init
     global ignore_auto
 
+    # first boot check
+    if not init:
+        init = True
+        if check_time(hour, minute, 0):
+            ignore_auto = True
+
     log("###### Eta Shutdown {} ######".format(time.time()))
     idle_time = -1
     for display in os.listdir("/tmp/.X11-unix/"):
@@ -100,15 +106,11 @@ def service():
             elif mode == "suspend":
                 os.system("systemctl suspend")
     # auto shutdown
-    if config["AUTO_SHUTDOWN"]["enabled"].lower() == "true" and not ignore_auto:
+    if ignore_auto:
+        print("Ignore auto shutdown")
+    elif config["AUTO_SHUTDOWN"]["enabled"].lower() == "true":
         hour = int(config["AUTO_SHUTDOWN"]["hour"])
         minute = int(config["AUTO_SHUTDOWN"]["minute"])
-        # check for first time
-        if not init:
-            init = True
-            if check_time(hour, minute, 0):
-                ignore_auto = True
-
         if check_time(hour, minute, (600)):
             if not message_shown:
                 message_shown = True
