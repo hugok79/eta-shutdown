@@ -64,7 +64,8 @@ def send_notify(message, yes_msg, no_msg, timeout):
 message_shown = False
 delay = 0
 init=False
-ignore=False
+ignore_auto=False
+
 def service():
     global message_shown
     global delay
