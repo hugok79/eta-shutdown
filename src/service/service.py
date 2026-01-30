@@ -78,10 +78,15 @@ def service():
     global init
     global ignore_auto
 
+    # variables
+    auto_hour = int(config["AUTO_SHUTDOWN"]["hour"])
+    auto_minute = int(config["AUTO_SHUTDOWN"]["minute"])
+    hour = int(config["TIMED_MODE"]["hour"])
+    minute = int(config["TIMED_MODE"]["minute"])
     # first boot check
     if not init:
         init = True
-        if check_time(hour, minute, 0):
+        if check_time(auto_hour, auto_minute, 0):
             ignore_auto = True
 
     log("###### Eta Shutdown {} ######".format(time.time()))
@@ -94,8 +99,6 @@ def service():
     # timed shutdown
     mode = config["TIMED_MODE"]["mode"]
     if mode != "none":
-        hour = int(config["TIMED_MODE"]["hour"])
-        minute = int(config["TIMED_MODE"]["minute"])
         req_idle = (hour*3600 + minute * 60)*1000
         if req_idle < 5*60*1000:
             req_idle = 5*60*1000
@@ -109,15 +112,13 @@ def service():
     if ignore_auto:
         print("Ignore auto shutdown")
     elif config["AUTO_SHUTDOWN"]["enabled"].lower() == "true":
-        hour = int(config["AUTO_SHUTDOWN"]["hour"])
-        minute = int(config["AUTO_SHUTDOWN"]["minute"])
-        if check_time(hour, minute, (600)):
+        if check_time(auto_hour, auto_minute, (600)):
             if not message_shown:
                 message_shown = True
                 if send_notify("Sistem 10dk sonra kapatılacak.", "1 saat ertele", "Tamam", 30):
                     delay -= 60*60
                     message_shown = False
-        if check_time(hour, minute, delay):
+        if check_time(auto_hour, auto_minute, delay):
             print("auto shutdown")
             os.system("poweroff -f")
 
