@@ -97,8 +97,8 @@ class MainWindow:
         self.ui_auto_shutdown_minute_minus_button.connect("clicked", lambda w: self.on_ui_decrease_minute_button(self.ui_auto_shutdown_minute_label))
         self.ui_timed_hour_plus_button.connect("clicked", lambda w: self.on_ui_increase_hour_button(self.ui_timed_hour_label))
         self.ui_timed_hour_minus_button.connect("clicked", lambda w: self.on_ui_decrease_hour_button(self.ui_timed_hour_label))
-        self.ui_timed_minute_plus_button.connect("clicked", lambda w: self.on_ui_increase_minute_button(self.ui_timed_minute_label))
-        self.ui_timed_minute_minus_button.connect("clicked", lambda w: self.on_ui_decrease_minute_button(self.ui_timed_minute_label))
+        self.ui_timed_minute_plus_button.connect("clicked", lambda w: self.on_ui_increase_minute_button(self.ui_timed_minute_label, True))
+        self.ui_timed_minute_minus_button.connect("clicked", lambda w: self.on_ui_decrease_minute_button(self.ui_timed_minute_label, True))
 
         self.ui_warning_label.set_text("")
 
@@ -124,16 +124,20 @@ class MainWindow:
         hour = (hour - 1) % 24
         label.set_text(str(hour).zfill(2))
 
-    def on_ui_increase_minute_button(self, label):
+    def on_ui_increase_minute_button(self, label, limit=False):
         minute = label.get_text()
         minute = int(minute)
         minute = (minute + 1) % 60
+        if limit and minute < 5:
+            minute = 5
         label.set_text(str(minute).zfill(2))
 
-    def on_ui_decrease_minute_button(self, label):
+    def on_ui_decrease_minute_button(self, label, limit=False):
         minute = label.get_text()
         minute = int(minute)
         minute = (minute - 1) % 60
+        if limit and minute < 5:
+            minute = 59
         label.set_text(str(minute).zfill(2))
 
     def on_ui_save_button_clicked(self, button):
@@ -233,15 +237,15 @@ class MainWindow:
         config = self.load_or_create_eta_shutdown_config()
 
         self.ui_auto_shutdown_switch.set_active(config.getboolean("AUTO_SHUTDOWN", "enabled"))
-        self.ui_auto_shutdown_hour_label.set_text(config.get("AUTO_SHUTDOWN", "hour"))
-        self.ui_auto_shutdown_minute_label.set_text(config.get("AUTO_SHUTDOWN", "minute"))
+        self.ui_auto_shutdown_hour_label.set_text(config.get("AUTO_SHUTDOWN", "hour").zfill(2))
+        self.ui_auto_shutdown_minute_label.set_text(config.get("AUTO_SHUTDOWN", "minute").zfill(2))
 
         suspend_radio_button = (config.get("TIMED_MODE", "mode") == "suspend")
         self.ui_timed_suspend_rbutton.set_active(suspend_radio_button)
 
         self.ui_timed_shutdown_rbutton.set_active(not suspend_radio_button)
-        self.ui_timed_hour_label.set_text(config.get("TIMED_MODE", "hour"))
-        self.ui_timed_minute_label.set_text(config.get("TIMED_MODE", "minute"))
+        self.ui_timed_hour_label.set_text(config.get("TIMED_MODE", "hour").zfill(2))
+        self.ui_timed_minute_label.set_text(config.get("TIMED_MODE", "minute").zfill(2))
 
         timed_enabled = (config.get("TIMED_MODE", "mode") != "none")
         if timed_enabled:
