@@ -49,7 +49,7 @@ def send_notify(message, yes_msg, no_msg, timeout):
             "notify-send", "-w",
             "-A", "true={}".format(yes_msg),
             "-A", "false={}".format(no_msg),
-            "-t", str(timeout), message]
+            "-t", str(timeout*1000), message]
         log(cmd)
         sp = subprocess.run(cmd, capture_output=True)
         if ret == None:
