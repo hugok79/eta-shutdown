@@ -32,7 +32,7 @@ class ShutdownMenu:
         box.set_spacing(18)
         box.pack_start(self.create_button("eta-shutdown-force-poweroff", _("Force Power Off"), ["pkexec", ACTION, "poweroff"]), True, True, 0)
         box.pack_start(self.create_button("eta-shutdown-poweroff", _("Power Off"),
-            ["dbus-send", "--system" "--print-reply",
+            ["dbus-send", "--system", "--print-reply",
              "--dest=org.freedesktop.login1", "/org/freedesktop/login1",
              "org.freedesktop.login1.Manager.PowerOff", "boolean:true"
             ]), True, True, 0)
