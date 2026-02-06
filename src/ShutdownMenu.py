@@ -1,5 +1,4 @@
 import os
-import sys
 import gi
 import threading
 import subprocess
@@ -78,7 +77,7 @@ class Application(Gtk.Application):
 
 def run():
     app = Application()
-    app.run(sys.argv)
+    app.run()
 
 
 if __name__ == "__main__":
