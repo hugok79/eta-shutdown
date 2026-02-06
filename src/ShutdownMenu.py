@@ -76,7 +76,10 @@ class Application(Gtk.Application):
             self.window = ShutdownMenu(self)
 
 
-if __name__ == "__main__":
+def run():
     app = Application()
     app.run(sys.argv)
 
+
+if __name__ == "__main__":
+    run()
