@@ -1,4 +1,5 @@
 import os
+import sys
 import gi
 import threading
 import subprocess
@@ -16,13 +17,14 @@ locale.textdomain(APPNAME)
 
 
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk
+from gi.repository import Gtk, Gio, GLib
 
 ACTION=os.path.dirname(os.path.abspath(__file__))+"/actions.py"
 
 class ShutdownMenu:
-    def __init__(self):
+    def __init__(self, application):
         window = Gtk.Window()
+        window.set_application(application)
         window.connect("destroy", Gtk.main_quit)
         window.set_skip_taskbar_hint(True)
         window.set_position(Gtk.WindowPosition.CENTER)
@@ -61,9 +63,20 @@ class ShutdownMenu:
         button.set_relief(Gtk.ReliefStyle.NONE)
         return button
 
-def run():
-    menu=ShutdownMenu()
-    Gtk.main()
+
+
+class Application(Gtk.Application):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, application_id="tr.org.etap.poweroff",
+                         flags=Gio.ApplicationFlags.DEFAULT_FLAGS, **kwargs)
+        self.window = None
+
+    def do_activate(self):
+        if not self.window:
+            self.window = ShutdownMenu(self)
+
 
 if __name__ == "__main__":
-    run()
+    app = Application()
+    app.run(sys.argv)
+
