@@ -1,3 +1,14 @@
+eta-shutdown (0.0.5) unstable; urgency=medium
+
+  [ Ali Riza KESKIN ]
+  * single instance
+  * add missing run function
+  * ignore sys.argv for shutdown menu
+  * fix missing XCloseDisplay
+  * dont fetch idle time when disabled
+
+ -- Fatih Altun <fatih.altun@pardus.org.tr>  Mon, 09 Feb 2026 12:00:39 +0000
+
 eta-shutdown (0.0.4) unstable; urgency=medium
 
   [ Ali Riza KESKIN ]
