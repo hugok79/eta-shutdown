@@ -2,22 +2,23 @@
 import os
 import sys
 import subprocess
+
 if os.getuid() != 0:
     subprocess.run(["pkexec", __file__])
 
+import ctypes
+libc = ctypes.cdll['libc.so.6']
+RB_POWER_OFF = 0x4321fedc
+RB_AUTOBOOT  = 0x01234567
+
+#https://github.com/systemd/systemd/blob/main/src/shutdown/shutdown.c#L653
+#https://unix.stackexchange.com/questions/83049/rolling-your-own-init-how-to-shutdown-restart#83053
+
 def poweroff():
-    with open("/proc/sys/kernel/sysrq", "w") as f:
-        f.write("1")
-    with open("/proc/sysrq-trigger", "w") as f:
-        f.write("_reisuo")
-        f.flush()
+    libc.reboot(RB_POWER_OFF)
 
 def reboot():
-    with open("/proc/sys/kernel/sysrq", "w") as f:
-        f.write("1")
-    with open("/proc/sysrq-trigger", "w") as f:
-        f.write("_reisub")
-        f.flush()
+    libc.reboot(RB_AUTOBOOT)
 
 if "poweroff" in sys.argv:
     poweroff()
