@@ -636,7 +636,7 @@
                 <property name="receives-default">True</property>
                 <property name="halign">center</property>
                 <property name="valign">center</property>
-                <signal name="pressed" handler="on_ui_save_button_clicked" swapped="no"/>
+                <signal name="clicked" handler="on_ui_save_button_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -662,6 +662,7 @@
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">True</property>
+                    <property name="padding">3</property>
                     <property name="position">0</property>
                   </packing>
                 </child>
