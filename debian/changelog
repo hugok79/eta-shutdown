@@ -1,3 +1,14 @@
+eta-shutdown (0.0.6) unstable; urgency=medium
+
+  [ Ali Riza KESKIN ]
+  * use libc reboot()
+  * change reboot method
+
+  [ Emel Öztürk ]
+  * Use clicked signal instead of pressed for button
+
+ -- Fatih Altun <fatih.altun@pardus.org.tr>  Mon, 22 Jun 2026 18:23:13 +0300
+
 eta-shutdown (0.0.5) unstable; urgency=medium
 
   [ Ali Riza KESKIN ]
