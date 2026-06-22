@@ -36,7 +36,11 @@ class ShutdownMenu:
              "--dest=org.freedesktop.login1", "/org/freedesktop/login1",
              "org.freedesktop.login1.Manager.PowerOff", "boolean:true"
             ]), True, True, 0)
-        box.pack_start(self.create_button("eta-shutdown-reboot", _("Restart"), ["pkexec", ACTION, "reboot"]), True, True, 0)
+        box.pack_start(self.create_button("eta-shutdown-reboot", _("Restart"),
+            ["dbus-send", "--system", "--print-reply",
+             "--dest=org.freedesktop.login1", "/org/freedesktop/login1",
+             "org.freedesktop.login1.Manager.Reboot", "boolean:true"
+            ]), True, True, 0)
         box.pack_start(self.create_button("eta-shutdown-force-poweroff", _("Force Power Off"), ["pkexec", ACTION, "poweroff"]), True, True, 0)
         box.pack_start(self.create_button("eta-shutdown-logout", _("Log Out"), ["pkill","-KILL", "-u", os.environ["USER"]]), True, True, 0)
 

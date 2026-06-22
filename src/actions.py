@@ -15,9 +15,11 @@ RB_AUTOBOOT  = 0x01234567
 #https://unix.stackexchange.com/questions/83049/rolling-your-own-init-how-to-shutdown-restart#83053
 
 def poweroff():
+    os.sync()
     libc.reboot(RB_POWER_OFF)
 
 def reboot():
+    os.sync()
     libc.reboot(RB_AUTOBOOT)
 
 if "poweroff" in sys.argv:
